@@ -1,0 +1,222 @@
+/** Page LOGIN **/
+body#pageLogin {
+  background-color: #DADADA;
+}
+body#pageLogin > .grid {
+  height: 100%;
+}
+body#pageLogin .column {
+  max-width: 450px;
+}
+
+/** Page ConnectÃ© **/
+/************ Notifications ************/
+.notification.item {
+	margin: 0 !important;
+}
+.notification.item  .label {
+	top: 0.7em;
+	padding: 0.2em;
+	margin: 0 0 0 -3.1em !important;
+}
+.ui.notification.popup {
+	padding: 2px;
+}
+.ui.notification.popup .item:before {
+	width: 0;
+}
+.ui.notification.popup .segments {
+	margin: 5px;
+}
+.ui.notification.popup .segment {
+	border: none;
+	padding: 0 2px;
+	margin: 0;
+}
+.ui.notification .ui.items > .item > .image + .content {
+	padding-right: 1.5em;
+}
+.ui.notification .ui.items {
+	margin: 1.5em 0.5em !important;
+}
+
+/************ Override Semantic UI ************/
+.ui.dropdown .menu.visible {
+	z-index: 401;
+}
+.ui.segment.bordered {
+	box-shadow: initial;
+	-webkit-box-shadow: initial;
+}
+.ui.threaded.comments {
+	max-width:initial;
+}
+div [class*="left floated"] {
+  float: left;
+  margin-left: 0.25em;
+}
+div [class*="right floated"] {
+  float: right;
+   margin-right: 0.25em;
+} 
+div [class*="left aligned"] {
+  text-align: left;
+}
+div [class*="right aligned"] {
+  text-align: right;
+} 
+
+/************ azerty ************/
+.ui.basic.segments {
+	background: none transparent;
+	background-color: transparent;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	border: none;
+	border-radius: 0;
+}
+
+.ui.top.attached.clearing .ui.floated{
+	margin-bottom:0;
+}
+.ui.bottom.attached .ui.container{
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+/** Page Dashboard **/
+#graphActivities .c3-line {
+	stroke-width: 2px;
+}
+#graphActivities .c3-axis-x path, #graphActivities .c3 .c3-axis-x line,
+#graphActivities .c3-axis-y path, #graphActivities .c3 .c3-axis-y line {
+	stroke: rgb(212, 212, 213);
+}
+#graphSleep .c3-ygrid-line line {
+	stroke: rgb(54, 162, 235);
+}
+#graphSleep .c3-ygrid-line text {
+	fill: rgb(54, 162, 235);
+}
+#graphSleep .c3-axis-x path,#graphSleep .c3 .c3-axis-x line,
+#graphSleep .c3-axis-y path, #graphSleep .c3 .c3-axis-y line {
+	stroke: rgb(212, 212, 213);
+}
+#graphSteps .c3-ygrid-line line {
+	stroke: rgb(75, 192, 192);
+}
+#graphSteps .c3-ygrid-line text {
+	fill: rgb(75, 192, 192);
+}
+#graphSteps .c3-axis-x path, #graphSteps .c3 .c3-axis-x line,
+#graphSteps .c3-axis-y path, #graphSteps .c3 .c3-axis-y line {
+	stroke: rgb(212, 212, 213);
+}
+#graphObjectives .c3-gauge-value {
+	stroke: rgb(153, 102, 255);
+}
+#graphObjectives .c3-chart-arcs .c3-chart-arcs-background {
+	fill: rgb(54, 162, 235);
+}
+
+/** Page Activities **/
+.ui.label.iconOnly .icon{
+	margin:0;
+}
+.ui.selection.list.list > .item.selected, .ui.selection.list > .item.selected {
+background: rgba(0,0,0,.03);
+color: rgba(0,0,0,.8);
+}
+.ui.selection.list.list > .item.header, .ui.selection.list > .item.header,
+.ui.selection.list.list > .item.header:hover, .ui.selection.list > .item.header:hover{
+background: rgba(0, 0, 0, .8);
+cursor:default;
+}
+.ui.selection.list.list .list > .item.header .header, .ui.selection.list.list > .item.header .header	{
+	color: rgba(255,255,255);
+}
+#mapListGlobal, #mapListItem, #calendarList {
+	width: calc(100%);
+	min-height: 600px; 
+}
+#mapListGlobal, #mapListItem {
+	border: 1px solid #d4d4d5;
+}
+
+/** Page Activity **/
+#mapActivity {
+	width: calc(100%);
+	min-height: 600px; 
+	border: 1px solid #d4d4d5;
+}
+#tblSplits {
+	padding-bottom: 0;
+	padding-top: 0;
+}
+.ui.container .ui.top.attached.segment:first-child .ui.items{
+	margin-bottom: 0;
+}
+.ui.statistics {
+	padding: 20px 0;
+}
+
+/** Page Activity IMPORT **/
+.ui.menu[class*="top attached"].two.item:first-child {
+	margin: 0 !important;
+}
+.ui[class*="bottom attached"].info.message {
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
+
+/** Page Feed **/
+.ui.feed > .event {
+	padding-bottom:0;
+	padding-top:0;
+}
+.ui.feed > .event > .label + .content {
+	margin-bottom: 1rem;
+}
+.ui.feed > .event .label {
+  border-left: 3px solid #DDDDDD;
+}
+.ui.feed > .event:last-child .label {
+  border-left-color: transparent;
+}
+.ui.feed > .event > .label {
+  margin-left: 1.6em;
+}
+.ui.feed > .event > .label > img,
+.ui.feed > .event > .label > .icon {
+  background-color: #009FDA;
+  border-radius: 500rem;
+  color: #FFFFFF;
+  width: 3rem;
+  height: 3rem;
+  line-height: 1.5;
+  left: -1.6rem;
+  opacity: 1;
+  position: relative;
+}
+
+/** Page Wellness **/
+.calHeatmap {
+  margin: 0.5em;
+}
+.calHeatmap .month {
+  margin-right: 0.4em;;
+}
+.calHeatmap .month-name {
+  font-size: 0.8rem;
+  fill: #777;
+  font-family: Arial, Helvetica;
+}
+.calHeatmap .day.hover {
+  stroke: #6d6E70;
+  stroke-width: 2;
+}
+.calHeatmap .day.focus {
+  stroke: #ffff33;
+  stroke-width: 2;
+}
+

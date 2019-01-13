@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Standard Meta -->
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+	<!-- Site Properties -->
+	<title>Connector</title>
+  
+	<!-- Semantic -->
+	<link rel="stylesheet" href="semantic.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui-calendar/0.0.8/calendar.min.css" />
+	<!-- Leaflet -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.4/leaflet.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.Default.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css" />
+	<!-- FullCalendar -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" />
+	<!-- c3.js -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.11/c3.min.css" />
+	<link rel="stylesheet" href="style.css">
+  
+	<!-- Jquery -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!-- Semantic -->
+	<script src="semantic.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui-calendar/0.0.8/calendar.min.js"></script>
+	<script src="https://semantic-ui.com/javascript/library/tablesort.js"></script>
+	<!-- Leaflet -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.4/leaflet.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/leaflet.markercluster.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-omnivore/0.3.4/leaflet-omnivore.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+	<!-- FullCalendar -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/locale/fr.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/locale/fr.js"></script>
+	<!-- c3.js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.11/c3.min.js"></script>
+	<!-- Project -->
+	<script src="script.js"></script>
+  	<script>
+		$(document).ready(function() {
+			fnPageConnector();
+		});
+	</script>
+</head>
+<body>
+	<div class="ui top attached menu">
+		<a href="dashboard.html" class="header item"><img class="logo" src="https://semantic-ui.com/examples/assets/images/logo.png">&nbsp;&nbsp;Project Name</a>
+		<a class="item" href="activities.html"><i class="stopwatch icon"></i> Activities</a>
+		<a class="item" href="wellness.html"><i class="heartbeat icon"></i> Wellness</a>
+		<div class="ui simple dropdown item">
+			<i class="add icon"></i> Add <i class="dropdown icon"></i>
+			<div class="menu">
+				<a class="item" href="add_activity.html"><i class="stopwatch icon"></i> New activity</a>
+				<a class="item" href="add_weight.html"><i class="weight icon"></i> New weight</a>
+				<div class="divider"></div>
+				<a class="item" href="activity_import.html"><i class="upload icon"></i> Import</a>
+			</div>
+		</div>
+		<a class="item" href="feed.html"><i class="group icon"></i> Community</a>
+		<div class="right menu">
+			<div class="notification item" href="">
+				<i class="mail outline icon ui"></i>
+				<div class="floating ui teal circular mini label tiny text">3</div>
+			</div>
+			<div class="notification ui flowing popup">
+			 <div class="ui basic horizontal segments">
+			   <div class="ui basic left aligned segment">
+				 <p><strong>Notifications</strong></p>
+			   </div>
+			   <div class="ui basic right aligned segment">
+				 <a href="#">Mark all as Read</a>
+			   </div>
+			 </div>
+				<div class="ui divided items">
+				  <div class="item">
+					<div class="ui tiny image">
+					  <img src="https://semantic-ui.com/images/avatar/large/stevie.jpg">
+					</div>
+					<div class="content">
+					  <a class="header">You have a new follower</a>
+					  <div class="meta">
+						<span>You are followed by Tim</span>
+					  </div>
+					  <div class="description">
+						<p></p>
+					  </div>
+					  <div class="extra">
+						3 days ago
+					  </div>
+					</div>
+				  </div>
+				  <div class="item">
+					<div class="ui tiny image">
+					  <img src="https://semantic-ui.com/images/wireframe/image.png">
+					</div>
+					<div class="content">
+					  <a class="header">Header</a>
+					  <div class="meta">
+						<span>Description</span>
+					  </div>
+					  <div class="description">
+						<p></p>
+					  </div>
+					  <div class="extra">
+						Additional Details
+					  </div>
+					</div>
+				  </div>
+				</div>
+			</div>
+			<div class="ui simple dropdown item">
+				<i class="user icon"></i> Progi1984 <i class="dropdown icon"></i>
+				<div class="menu">
+					<a class="item right" href="parameters.html"><i class="cog icon"></i> Parameters</a>
+					<a class="item right" href="login.html"><i class="sign-out icon"></i> Logout</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="ui bottom attached">
+		<div class="ui container">
+			<div class="ui top attached segment">
+				<div class="ui items">
+				  <div class="item">
+					<div class="ui tiny image">
+					  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAhFBMVEUcsLn///8Aq7UArbZgvMIxr7cZrLQAqbPv+frC5uno9vf2/PyK0NX6/v7d8fNBucHO6+1yyM5Vv8ah2d0ptLyJ0NWb0NOU1Nljw8qv3uJ4ytDY7/FJu8O+5OfZ6+yFyMxXuL+o1dh6w8i53N58zNFKtLvJ4+Sj09bA4OGc19ySzdFywccOT/0qAAANZUlEQVR4nO1daXuyOhCFRAVRcK1rrVu1b/X//78LiEKSmYSWJIK35zMPyclknTmZOO5P0AvOx/1le7i2Tqe2XZxOu9b1sJ0d/334vZ/U2SnL7Ty7njqeR2gC50lIC/c8r727HCONDP3joZ1QexYvCAnR1teHDobB18mrF7kclHQO54oM9zG9Z/OQghJvK7ekjKF/8cizGZQA9XYyQ+IMe9uam68AcsI5ogy/msMvAdkFP2P40W5C/2TgXX7CcOs9u76/AG2DUw7E0D81qoPm8PblGJ6baMAbyLUMw31zCcY99STsWQWGlyYTTAYjT5FneGncHMqj40sZNp9gTLEnYTh7AYIxeijDY7PH4B30hDFs8DLBgrZghr3X6KIJ6AxkeHp2vTTCGwIMX2EazdERGX68yiC8gV4Fhu1n10kzvDPHcG+8jxJCKCX2XHZtlmFouI9SOl6mh/BoM7LEkewZhhezpZJFwcfgv9mZ0zpFhj2zJiQbl0EwtcGRfBUYfhk1IRUd8GMbPbVTYNgxWRCBvGADkyXeC/73YPjPZKfhu2g2GG0Ycfdg2DJYCl1ABF13aWEoekHG0Og8A/bRBFODhWZIN+AJw73JHjNGCFoxYjtjaLKTkiXG0MZITLqpY3g/g3ZSO910nzI8m+wuNEQZjiwYsZUyNLtjQwm6bza6acrQ6Nl++lyG5CNhaHZPijP8tMAwHoiO4cM98VGG7ybLzUAPMcOj0aYkXYxgaOWYeIoZmp1o6BvGcGjllNgJHaPrfQyKMVxYsaHnO6ZdUOQbJhjYOeiTsxMaPRvGoPBcY2OeSUo/Or5xP+kAIji35HKjM8e8J5iORII2Dha3wreO0V3pDUQ4BPftRRCuztFCYWTKrIrBu0U1y84xevx9gAw290PGcGQ1BNR2ZraGPH1fzeejsUPsypE6ztZegU/RT1tl+BR0nMPLM7w+uwqG8foMHcfw0aIG+GNoF0kcPAmH6/xnjRgSslh2oyAaLlc69wXWGN4sgysVyHRZ8B4PF9r2droYytuckvEy6rlu6G9WMEfBFzBU/LI0NDCkxHlfLGQ7TjIqhi++RY50ClxF07RFr8yQks9MRBbNKVgn6qzZqvv88YkOwCuFekQbVRkyQhJ3ApgRqj5X9ylyZ/JTB8WKDMmErVMkfgKGLpigBR6C0+GvqsZQDID6/CeIr62gN6ET8IsEOnyOlRiSvlipiK0UFgT2888k8Sm3X31CrcSwhKMQrf6j7hSUo2TQIFyuwhAJuxQZUnUcH/X7p6geKa5kQ7hSRSNS/GZ5FriA3KkFbJ7JkAKjMMG60LNQscnDK4yrNVL4lbtpFYbIAAoLn8zxumcNQYb4JwkqSzYqMCTYpf+8UjIDZdahuB4lReUlsQpDrG55pWTzZJgxxOPgKcZ1ZJhLK2U2zBhKNEVccz2BITaC8k8k25X7fgXt60Jz/RJVZhqk+oXpj67wqnez1QLVMqSoLmiosh4iS0FxCVMrhmTTrcsuPb9DpT0NsqkufrIGP0lw/wTc+j3w/VQbwn2QaXV8x9K9fyYfiNUVjNXOFpCF2KlBPeFKt23d5+68He5CaooV260oMlgLkXyZETWIUKsxFD0UQoiegoKaqNgO7yhBHZKNyp4oZlHsAW5OD1j1A6bm6HSqRRlWmWHBFRVOQF8oEbRtXe4z3tsDGfrXqO4vpWTQ36zX3eUCdiYmOgVmRuqJXkKQ4lCPS1iLzzuJp1BZqIEshneXfTSHDE0Wwpz1rcmvbyluEZt33J9M5osp0hDUYYfrcKArNmMx9qRIZkfp293Q0UTj/b0aRddiQ9PBeDEe6NXc1ImhGfwxrCPSWHhpfVXTGN4m5eVyOV9h0zKHWjGkN6UCbh5KRsM8Fh7Ny8SJa8SQOovJMAqCaPOGmIes+DM3vE9kYIthbBxPmlOBTDcFpUK0ErMagqFwaK/PQhNDhbCS0tEm3aD7wzcHqhK/pYmPH2PuO+xG8URBUYtSgQ5Gq9GUoEWRt2Lv2ogbFjIGIjjsxpR+wgTj/8kpKhnGXUtqn3izlZ0c/OUAVioMeE8Gf0xGHBnFQ5bM1yFX/ssZUvoeT82TFb5NJKti63eByQ3qXWyzo7UvfCb1yEkv+skYUjK/967hO8yRD5KGQj4IuPqMhwmv/cOLofCMy9w5EoZkXBw94IAukfICccJMynmisqgFFqq8Q+buwBnyjQ/8BQpzh2x7ot7Eh99YWvtM90BUScolESqUIRUaX/BdwpcLGTEG7rN/fCYJhLtZLBy/xYjWrQxD0WXPD2hEY1D0mJaI40uCN27WcySxgTvwuQZjCLk5Q7ahMPsUjCiNPZWLcqcfKQlKNBsYQzDqwhoRnSFyv74sdJbFzSQ5Ce5VV8g1UuBrIsYQdMZzfk6stNxTLbnKfZ8d5KGnVAwIu81Z4FE4hCE8wbHSD1RJUlioZZVKewS+GcsQt6oiiApUrQRDOAAfFj/B65avKzLJ2s3UymkyNo5qqKYMfzoOyzAscRFd2gXT4KdqLS/LsPdThnCMnvkNPv5zd7zUhm+lbBg3FzVhQ7j6rLISNVCuFCaySt0WRIkuLEU8SSqEYSlwJSq64surnrYCtprna5N0qZ7iBRXQp+qe7IrhLDVDUFnJbjkxZWVBICKb5+9bToViKFlcVSuKK4ulojYEzgT85g8peFlObZLVCYkd3pH2PuXGWyYsQhmKnT8UPoHXqRKfuAVLyw2UtoN6IEoE4fjpSZijxWSHU2jHxeYOQuv/UEHjjZCAlmgFodCSDLl8gOLpHRZacH4hbCSuyzkosnZQrYiy1GgyLwYZ5dvKDeheFn0wguMLNlGv+AWu+3osT9KFVa4Gl3qiKF1146muF01gL5roR5sDjgBgxehNmRslWD/N/QWSVnAVmg2FN5GqQ/SfOccl6O0V54k1XwqybBYi3bLRKtxi+QnDEiDk/XuzjobLERYnIQvmEBWKiT/A+veYUD7WCq5KOKVHi0Hld1uLIaNoDn0I3L4RRDfIbONPJT3MsarFeJt/41oMMmUl4REftsBOA3yPF1AfLQZx+ndDB0vQAU3eBb8JoD7iUaP4YRriWYwW7w4a4yEjhqMPqo841IlhCkWYjkz7wyDZpvrryaJUmLt2DJWgtzlNERLL0TyGP8UfQ7t4+awR40l3Ha2T3ZHGbFnWGMYzg1QrQ5xlYW/XFRf838IOQxqbJ80aEWDvWwiHh3pljUhEkwPJCYRJSxACJywh7ULynaZk0RqyRqyUWSO4PbPP78mQrBFaUipozhoB+fToAIi1lssasarBbQQ+6UrZrBFMJBKXKtQya4SgNoE9vk3JGgGEVbhQJeYYL5k1QkNa8xpkjZC5e2uZNYK511ri9Qd51ojqKaOfmDUi+6LOWSOQ4Ob/IGtEYZr8yxrxlzXiL2uEYYbYCMp7aZmsESWi3M9i+Jc1IoFkR9b/yxqR4slZI0BlG5s1Au2mDckaAVXuxbJGiGIM7vhe4nVAmRE1vARpPGsE/AwLk0wA37xWH4WVbcg5ycJfZY1AZQg1yRpRyC+LZI0QCPDZEpCtT6DFnagha4Q3mG/WiS8eC2zSATPSwr7w8otX+6wRCqVCbOjHDi8A0ggnHwhzlupeYVlYUyrQRX+ynI9QpQJtftYIqsoa4fTvhg5QDdYvUKPo2k2pIM+b/QvUiWEK7S+1vP77Fq/O8P/wzszrvxX0+gxtvdn1LHQsvbvm3MRaquwFBtBxzD4l+wAZTIZ+GPrBZmT34bWTjfcPE2FowbXas/j6YbKjMf+GpXj8i3RJZdSgBwvvkAIa9NDaG4/0Yv4tWcdTp3E1B3o0/h4w4qGQXePRWvrZcXeGy1DnoDUJL3Bcw5uaEmFUk0je5Ta85KMZdHW5YeRou477YbSkEmoTk6DXmKFrdLmQxD9tdFP6lTA0OplK9DSa5KNSkHPC0OxUgxLUIVlTwnMThv9MDkR1DNgoTilDs/s2nKE0BZke0FnK0D0ZLEOSoKayUEYN7+PG8MtgY0out1ropB33xjAw2E3LpHgxV/g2Y2i0m6LqUQuLRdJJbwz3BpsTS3uhQ8GtQtu9MwxNzqaIMq+69lcJsn8wNLroi7n7EtjYd3thztDkXAPqZTTIZNTlbt2coWs0ekHGfATbyvHX6xUZmt3XcBeffE0P/SoKvbhFhu7F8El/3H3kVPi04xLuuCxD17TLjdLx53wyH00tufXJkWdo9IRxg0KpoBc7l2fotl4qCOX5IkPzrmGLePTRIkPXRgTDEujVhRga3Z7aRduFGbrbF6HY6WEMX2S2Yd3snB9l9wIUyYcrYfgCFPmbPIIvrNXwschZEGDoXhtNsSNEEQB/5qy56yJti0EEyGN7bipFcgDYgD5p/9TE+YZ6R4gM4nX/El/qqTvIDg5zYXGFoNWsrko7oAElDOPReGoOR+rNUB6yXNMxx0b0VdqZSd5XkGfT/jjUniP1Tlj/LMMwxrHl2RUT/gCUeO2Z4qK0mmF8+P+3bXu2ZaFKxOw6172KXjmGCXrnWavtecSiKwljltyx8tq7y7EEux8wvNEMzsfZ9tA6dZ6E9ql13c6O50idoj3Hf3OfnJcapFwTAAAAAElFTkSuQmCC">
+					</div>
+					<div class="content">
+					  <span class="header">Fitbit</span>
+						<div class="ui right floated green button">
+						  Connect
+						  <i class="right linkify icon"></i>
+						</div>
+					  <div class="meta">
+						By <a href="">Fitbit Corp</a>
+					  </div>
+					</div>
+				  </div>
+				</div>
+				<div class="ui small four statistics">
+				  <div class="statistic">
+					<div class="label">
+					  Imported Activities
+					</div>
+					<div class="value">
+					  <i class="stopwatch icon"></i> 23
+					</div>
+				  </div>
+				  <div class="statistic">
+					<div class="label">
+					  Synchronizations
+					</div>
+					<div class="value">
+					  <i class="sync icon"></i> 659
+					</div>
+				  </div>
+				  <div class="statistic orange">
+					<div class="label">
+					  Warnings
+					</div>
+					<div class="value">
+					  <i class="exclamation triangle icon"></i> 18
+					</div>
+				  </div>
+				  <div class="statistic red">
+					<div class="label">
+					  Errors
+					</div>
+					<div class="value">
+					  <i class="exclamation circle icon"></i> 18
+					</div>
+				  </div>
+				</div>
+			</div>
+			<div class="ui attached segment">
+				<form class="ui -loading form">
+				  <div class="field">
+					<label>API Key</label>
+					<input type="text" name="first-name" placeholder="API Key">
+				  </div>
+				  <div class="field">
+				  <label>Synchronisation</label>
+				  </div>
+				  <div class=" field">
+					<div class="ui toggle checkbox">
+					  <input type="checkbox" tabindex="0" class="hidden">
+					  <label>myTool <i class="angle double right icon"></i> RunKeeper</label>
+					</div>
+				  </div>
+				  <div class=" field">
+					<div class="ui toggle checkbox">
+					  <input type="checkbox" tabindex="0" class="hidden">
+					  <label>RunKeeper <i class="angle double right icon"></i> myTool</label>
+					</div>
+				  </div>
+				  <button class="ui primary button" type="submit">Update settings</button>
+				</form>
+			</div>
+			<div class="ui bottom attached segment">
+				<table class="ui padded sortable table">
+					<thead>
+						<tr>
+							<th>Date</th>
+							<th>Log</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>2018-12-11 10:00</td>
+							<td><i class="green thumbs up icon"></i> OK</td>
+							<td class="center aligned">
+							</td>
+						</tr>
+						<tr>
+							<td>2018-12-11 10:30</td>
+							<td><i class="orange exclamation triangle icon"></i> There is doublons with existing activities</td>
+							<td class="center aligned">
+								<a class="ui blue button" href="connector_duplicate.html">Check doublons</a>
+							</td>
+						</tr>
+						<tr>
+							<td>2018-12-11 11:00</td>
+							<td><i class="red exclamation circle icon"></i> Please check the authentication</td>
+							<td class="center aligned">
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
