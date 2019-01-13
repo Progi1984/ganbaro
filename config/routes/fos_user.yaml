@@ -1,0 +1,9 @@
+fos_user:
+  resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+
+fos_user_registration_confirmed:
+  path: /registration/confirmed
+  defaults: { _controller: \App\Controller\DefaultController:registrationAction }
+  requirements:
+    _method: GET
