@@ -1,0 +1,76 @@
+/************ Notifications ************/
+.notification.item {
+    margin: 0 !important;
+    .label {
+        top: 0.7em;
+        padding: 0.2em;
+        margin: 0 0 0 -3.1em !important;
+    }
+
+}
+
+.ui.notification.popup {
+    padding: 2px;
+
+    .item:before {
+        width: 0;
+    }
+    .segments {
+        margin: 5px;
+    }
+    .segment {
+        border: none;
+        padding: 0 2px;
+        margin: 0;
+    }
+    .ui.items {
+        margin: 1.5em 0.5em !important;
+        & > .item > .image + .content {
+            padding-right: 1.5em;
+        }
+    }
+}
+
+/************ Override Semantic UI ************/
+.ui.dropdown .menu.visible {
+    z-index: 401;
+}
+.ui.segment.bordered {
+    box-shadow: initial;
+    -webkit-box-shadow: initial;
+}
+.ui.threaded.comments {
+    max-width:initial;
+}
+div [class*="left floated"] {
+    float: left;
+    margin-left: 0.25em;
+}
+div [class*="right floated"] {
+    float: right;
+    margin-right: 0.25em;
+}
+div [class*="left aligned"] {
+    text-align: left;
+}
+div [class*="right aligned"] {
+    text-align: right;
+}
+
+/************ azerty ************/
+.ui.basic.segments {
+    background: none transparent;
+    background-color: transparent;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+}
+
+.ui.top.attached.clearing .ui.floated{
+    margin-bottom:0;
+}
+.ui.bottom.attached .ui.container{
+    margin-bottom: 20px;
+    margin-top: 20px;
+}

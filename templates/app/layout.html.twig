@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <title>Oikoshi</title>
+        {% block stylesheets %}
+        {% endblock stylesheets %}
+    </head>
+    <body>
+        {% include 'app/top_menu.html.twig' %}
+        <div class="ui bottom attached">
+            <div class="ui basic segment">
+                <!--
+                  <div class="row">
+                    <div class="column">
+                      <div class="ui placeholder segment">
+                      <div class="ui icon header">
+                        <i class="calendar times outline icon"></i>
+                        No activities.
+                      </div>
+                      <a class="ui primary button" href="activities.html">Create a new activity</a>
+                     </div>
+                    </div>
+                  </div>
+                </div>
+                  -->
+                <div class="ui grid">
+                {% block content %}
+                {% endblock content %}
+                </div>
+            </div>
+        </div>
+        {% block javascripts %}
+        {% endblock javascripts %}
+    </body>
+</html>

@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -15,14 +14,6 @@ class DefaultController extends AbstractController
     public function indexAction()
     {
         return $this->redirectToRoute('dashboard');
-    }
-
-    /**
-     * @Route("/app/", name="dashboard")
-     */
-    public function dashboardAction()
-    {
-        return new Response('connected');
     }
 
     public function registrationAction()

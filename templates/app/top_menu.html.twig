@@ -1,0 +1,74 @@
+<div class="ui top attached menu">
+    <a href="{{ path('dashboard') }}" class="header item"><img class="logo" src="https://semantic-ui.com/examples/assets/images/logo.png">&nbsp;&nbsp;Okisohi</a>
+    <a class="item" href="activities.html"><i class="stopwatch icon"></i> Activities</a>
+    <a class="item" href="wellness.html"><i class="heartbeat icon"></i> Wellness</a>
+    <div class="ui simple dropdown item">
+        <i class="add icon"></i> Add <i class="dropdown icon"></i>
+        <div class="menu">
+            <a class="item" href="add_activity.html"><i class="stopwatch icon"></i> New activity</a>
+            <a class="item" href="add_weight.html"><i class="weight icon"></i> New weight</a>
+            <div class="divider"></div>
+            <a class="item" href="activity_import.html"><i class="upload icon"></i> Import</a>
+        </div>
+    </div>
+    <a class="item" href="feed.html"><i class="group icon"></i> Community</a>
+    <div class="right menu">
+        <div class="notification item" href="">
+            <i class="mail outline icon ui"></i>
+            <div class="floating ui teal circular mini label tiny text">3</div>
+        </div>
+        <div class="notification ui flowing popup">
+            <div class="ui basic horizontal segments">
+                <div class="ui basic left aligned segment">
+                    <p><strong>Notifications</strong></p>
+                </div>
+                <div class="ui basic right aligned segment">
+                    <a href="#">Mark all as Read</a>
+                </div>
+            </div>
+            <div class="ui divided items">
+                <div class="item">
+                    <div class="ui tiny image">
+                        <img src="https://semantic-ui.com/images/avatar/large/stevie.jpg">
+                    </div>
+                    <div class="content">
+                        <a class="header">You have a new follower</a>
+                        <div class="meta">
+                            <span>You are followed by Tim</span>
+                        </div>
+                        <div class="description">
+                            <p></p>
+                        </div>
+                        <div class="extra">
+                            3 days ago
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="ui tiny image">
+                        <img src="https://semantic-ui.com/images/wireframe/image.png">
+                    </div>
+                    <div class="content">
+                        <a class="header">Header</a>
+                        <div class="meta">
+                            <span>Description</span>
+                        </div>
+                        <div class="description">
+                            <p></p>
+                        </div>
+                        <div class="extra">
+                            Additional Details
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ui simple dropdown item">
+            <i class="user icon"></i> Progi1984 <i class="dropdown icon"></i>
+            <div class="menu">
+                <a class="item right" href="parameters.html"><i class="cog icon"></i> Parameters</a>
+                <a class="item right" href="{{ path('fos_user_security_logout') }}"><i class="sign-out icon"></i> Logout</a>
+            </div>
+        </div>
+    </div>
+</div>

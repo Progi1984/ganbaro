@@ -1,0 +1,52 @@
+#graphActivities {
+    .c3-line {
+        stroke-width: 2px;
+    }
+    .c3-axis-x path,
+    .c3 .c3-axis-x line,
+    .c3-axis-y path,
+    .c3 .c3-axis-y line {
+        stroke: rgb(212, 212, 213);
+    }
+}
+#graphSleep {
+    .c3-ygrid-line {
+        line {
+            stroke: rgb(54, 162, 235);
+        }
+
+        text {
+            fill: rgb(54, 162, 235);
+        }
+    }
+    .c3-axis-x path,
+    .c3 .c3-axis-x line,
+    .c3-axis-y path,
+    .c3 .c3-axis-y line {
+        stroke: rgb(212, 212, 213);
+    }
+}
+#graphSteps {
+    .c3-ygrid-line {
+        line {
+            stroke: rgb(75, 192, 192);
+        }
+        text {
+            fill: rgb(75, 192, 192);
+        }
+    }
+    .c3-axis-x path,
+    .c3 .c3-axis-x line,
+    .c3-axis-y path,
+    .c3 .c3-axis-y line {
+        stroke: rgb(212, 212, 213);
+    }
+}
+#graphObjectives {
+    .c3-gauge-value {
+        stroke: rgb(153, 102, 255);
+    }
+    .c3-chart-arcs .c3-chart-arcs-background {
+        fill: rgb(54, 162, 235);
+    }
+}
