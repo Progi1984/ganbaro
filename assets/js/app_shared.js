@@ -1,13 +1,3 @@
-// CSS
-require('../../node_modules/semantic-ui/dist/semantic.css');
-// CSS : Runtime
-require('../css/app_shared.scss');
-
-// JS : Runtime
-var $ = require('jquery');
-// JS : Semantic
-require ('../../node_modules/semantic-ui/dist/semantic.js');
-
 $(document).ready(function() {
     window.chartColors = {
         red: 'rgb(255, 99, 132)',
@@ -19,6 +9,9 @@ $(document).ready(function() {
         grey: 'rgb(201, 203, 207)'
     };
 
+    // Dropdown
+    $('.ui.dropdown').dropdown();
+
     // Notification
     $('.notification.item').popup({
         popup: '.popup',
@@ -26,3 +19,18 @@ $(document).ready(function() {
         on: 'click'
     });
 });
+// Helpers
+var fnMapInit = function(idObject) {
+    if(typeof idObject === "undefined") {
+        idObject = "map";
+    }
+    var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+    var osmAttribution = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+    var tiles = L.tileLayer(osmUrl, {
+            maxZoom: 18,
+            attribution: osmAttribution
+        }),
+        latlng = L.latLng(-37.82, 175.24);
+    var map = L.map(idObject, {center: latlng, zoom: 13, layers: [tiles]});
+    return map;
+}

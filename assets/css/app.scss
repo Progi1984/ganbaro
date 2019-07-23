@@ -2,14 +2,6 @@
 
 /** Page ConnectÃ© **/
 /************ Notifications ************/
-.notification.item {
-    margin: 0 !important;
-}
-.notification.item  .label {
-    top: 0.7em;
-    padding: 0.2em;
-    margin: 0 0 0 -3.1em !important;
-}
 .ui.notification.popup {
     padding: 2px;
 }
@@ -124,7 +116,7 @@ div [class*="right aligned"] {
     cursor:default;
 }
 .ui.selection.list.list .list > .item.header .header, .ui.selection.list.list > .item.header .header	{
-    color: rgba(255,255,255);
+    color: rgb(255,255,255);
 }
 #mapListGlobal, #mapListItem, #calendarList {
     width: calc(100%);

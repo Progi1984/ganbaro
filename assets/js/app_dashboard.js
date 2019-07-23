@@ -1,15 +1,3 @@
-require ('../../assets/js/app_shared.js');
-
-// CSS : c3.js
-require('../../node_modules/c3/c3.min.css');
-
-// CSS : Runtime
-require('../css/app_dashboard.scss');
-
-// JS : c3.js
-var d3 = require('../../node_modules/d3/dist/d3.min.js');
-var c3 = require('../../node_modules/c3/c3.min.js');
-
 $(document).ready(function() {
     var redAlpha = d3.rgb(window.chartColors.red);
     redAlpha.opacity = 0.8;
