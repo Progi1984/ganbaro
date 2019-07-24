@@ -37,3 +37,8 @@ syntax:phpcs:
   stage: syntax
   script:
     - ./vendor/bin/phpcs --error-severity=1 --warning-severity=8 --extensions=php
+
+syntax:lint:twig:
+  stage: syntax
+  script:
+    - php bin/console lint:twig templates/
