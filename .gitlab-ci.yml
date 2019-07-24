@@ -7,11 +7,13 @@ cache:
   - vendor/
 
 before_script:
-# Install git, the php image doesn't have installed
+# Update & Install tools
 - apt-get update -yqq
 - apt-get install git -yqq
-# Install mysql driver
+- apt-get install zlib1g-dev -yqq
+# Install PHP Extensions
 - docker-php-ext-install pdo_mysql
+- docker-php-ext-install zip
 # Install composer
 - curl -sS https://getcomposer.org/installer | php
 # Install all project dependencies
