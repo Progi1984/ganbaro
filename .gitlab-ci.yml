@@ -1,0 +1,35 @@
+# Select image from https://hub.docker.com/_/php/
+image: php:7.2
+
+# Select what we should cache
+cache:
+  paths:
+  - vendor/
+
+before_script:
+# Install git, the php image doesn't have installed
+- apt-get update -yqq
+- apt-get install git -yqq
+# Install mysql driver
+- docker-php-ext-install pdo_mysql
+# Install composer
+- curl -sS https://getcomposer.org/installer | php
+# Install all project dependencies
+- php composer.phar install
+
+services:
+- mysql
+
+variables:
+  # Configure mysql service (https://hub.docker.com/_/mysql/)
+  MYSQL_DATABASE: hello_world_test
+  MYSQL_ROOT_PASSWORD: mysql
+
+stages:
+  - syntax
+  #- tests
+
+syntax:phpcs:
+  stage: syntax
+  script:
+    - ./vendor/bin/phpcs --error-severity=1 --warning-severity=8 --extensions=php
