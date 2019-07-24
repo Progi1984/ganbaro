@@ -126,11 +126,12 @@ class ActivityType extends AbstractType
             ])
             ->add('energy', TextType::class, [
                 'required' => false,
-                'constraints' => 
-                new GreaterThan([
-                    'value' => 0,
-                    'message' => 'Calories : The value should be greater than 0.'
-                ])
+                'constraints' => [
+                    new GreaterThan([
+                        'value' => 0,
+                        'message' => 'Calories : The value should be greater than 0.'
+                    ])
+                ],
             ])
             ->add('energy_unit', HiddenType::class, [
                 'required' => false,

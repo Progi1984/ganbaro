@@ -137,7 +137,7 @@ class Activity
 
     /**
      * @return \DateTime
-     */ 
+     */
     public function getDatetime(): ?\DateTime
     {
         return $this->datetime;
@@ -145,7 +145,7 @@ class Activity
 
     /**
      * @return string
-     */ 
+     */
     public function getDescription(): ?string
     {
         return $this->description;
@@ -153,7 +153,7 @@ class Activity
 
     /**
      * @return float
-     */ 
+     */
     public function getDistance(): float
     {
         return $this->distance;
@@ -161,7 +161,7 @@ class Activity
 
     /**
      * @return string
-     */ 
+     */
     public function getDistanceUnit(): string
     {
         return $this->distanceUnit;
@@ -169,7 +169,7 @@ class Activity
 
     /**
      * @return int
-     */ 
+     */
     public function getDuration(): int
     {
         return $this->duration;
@@ -177,7 +177,7 @@ class Activity
 
     /**
      * @return float
-     */ 
+     */
     public function getElevation(): ?float
     {
         return $this->elevation;
@@ -185,7 +185,7 @@ class Activity
 
     /**
      * @return string
-     */ 
+     */
     public function getElevationUnit(): string
     {
         return $this->elevationUnit;
@@ -193,7 +193,7 @@ class Activity
 
     /**
      * @return int
-     */ 
+     */
     public function getEnergy(): ?int
     {
         return $this->energy;
@@ -201,7 +201,7 @@ class Activity
 
     /**
      * @return string
-     */ 
+     */
     public function getEnergyUnit(): string
     {
         return $this->energyUnit;
@@ -209,7 +209,7 @@ class Activity
 
     /**
      * @return string
-     */ 
+     */
     public function getGpsPoints(): ?string
     {
         return $this->gpsPoints;
@@ -217,7 +217,7 @@ class Activity
 
     /**
      * @return string
-     */ 
+     */
     public function getType(): string
     {
         return $this->type;
@@ -225,7 +225,7 @@ class Activity
 
     /**
      * @return User
-     */ 
+     */
     public function getUser(): User
     {
         return $this->user;
@@ -234,7 +234,7 @@ class Activity
     /**
      * @param \DateTime $datetime
      * @return self
-     */ 
+     */
     public function setDatetime(\DateTime $datetime): self
     {
         $this->datetime = $datetime;
@@ -244,7 +244,7 @@ class Activity
     /**
      * @param string $description
      * @return self
-     */ 
+     */
     public function setDescription(?string $description): self
     {
         $this->description = $description;
@@ -254,7 +254,7 @@ class Activity
     /**
      * @param float $distance
      * @return self
-     */ 
+     */
     public function setDistance(float $distance): self
     {
         $this->distance = $distance;
@@ -264,7 +264,7 @@ class Activity
     /**
      * @param string $distanceUnit
      * @return self
-     */ 
+     */
     public function setDistanceUnit(string $distanceUnit): self
     {
         $this->distanceUnit = $distanceUnit;
@@ -274,7 +274,7 @@ class Activity
     /**
      * @param int $duration
      * @return self
-     */ 
+     */
     public function setDuration(int $duration): self
     {
         $this->duration = $duration;
@@ -284,7 +284,7 @@ class Activity
     /**
      * @param float $elevation
      * @return self
-     */ 
+     */
     public function setElevation(float $elevation): self
     {
         $this->elevation = $elevation;
@@ -294,7 +294,7 @@ class Activity
     /**
      * @param string $elevationUnit
      * @return self
-     */ 
+     */
     public function setElevationUnit(string $elevationUnit): self
     {
         $this->elevationUnit = $elevationUnit;
@@ -304,7 +304,7 @@ class Activity
     /**
      * @param float $energy
      * @return self
-     */ 
+     */
     public function setEnergy(?float $energy): self
     {
         $this->energy = $energy;
@@ -314,7 +314,7 @@ class Activity
     /**
      * @param string $energyUnit
      * @return self
-     */ 
+     */
     public function setEnergyUnit(string $energyUnit): self
     {
         $this->energyUnit = $energyUnit;
@@ -324,7 +324,7 @@ class Activity
     /**
      * @param string $gpsPoints
      * @return self
-     */ 
+     */
     public function setGpsPoints(?string $gpsPoints): self
     {
         $this->gpsPoints = $gpsPoints;
@@ -334,7 +334,7 @@ class Activity
     /**
      * @param string $type
      * @return self
-     */ 
+     */
     public function setType(string $type): self
     {
         $this->type = $type;
@@ -344,7 +344,7 @@ class Activity
     /**
      * @param User $user
      * @return self
-     */ 
+     */
     public function setUser(User $user): self
     {
         $this->user = $user;

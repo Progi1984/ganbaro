@@ -42,7 +42,7 @@ class ActivityController extends AbstractController
                 new \DateTime($data['date']. ' '.$data['time'])
             );
             $activity->setDuration(
-                (int)$data['duration_hour'] * 60 * 60 
+                (int)$data['duration_hour'] * 60 * 60
                 + (int)$data['duration_minute'] * 60
                 + (int)$data['duration_second']
             );
@@ -100,7 +100,7 @@ class ActivityController extends AbstractController
                 new \DateTime($data['date']. ' '.$data['time'])
             );
             $activity->setDuration(
-                (int)$data['duration_hour'] * 60 * 60 
+                (int)$data['duration_hour'] * 60 * 60
                 + (int)$data['duration_minute'] * 60
                 + (int)$data['duration_second']
             );
