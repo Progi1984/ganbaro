@@ -1,12 +1,3 @@
-// CSS
-require('../../node_modules/semantic-ui/dist/semantic.css');
-require('../css/login.scss');
-
-// JS
-require ('../../node_modules/semantic-ui/dist/semantic.js')
-var $ = require('jquery');
-
-// JS : Runtime
 $(document).ready(function() {
     $('.ui.checkbox').checkbox();
     $('.ui.form')

@@ -42,34 +42,7 @@ $(document).ready(function() {
     L.Map.addInitHook(function () {
         mapsPlaceholder.push(this);
     });
-    window.chartColors = {
-        red: 'rgb(255, 99, 132)',
-        orange: 'rgb(255, 159, 64)',
-        yellow: 'rgb(255, 205, 86)',
-        green: 'rgb(75, 192, 192)',
-        blue: 'rgb(54, 162, 235)',
-        purple: 'rgb(153, 102, 255)',
-        grey: 'rgb(201, 203, 207)'
-    };
-
-    var fnMapInit = function(idObject = 'map') {
-        var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-        var osmAttribution = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors';
-        var tiles = L.tileLayer(osmUrl, {
-                maxZoom: 18,
-                attribution: osmAttribution
-            }),
-            latlng = L.latLng(-37.82, 175.24);
-        var map = L.map(idObject, {center: latlng, zoom: 13, layers: [tiles]});
-        return map;
-    }
-    var fnMenuNotification = function() {
-        $('.notification.item').popup({
-            popup: '.popup',
-            position: 'bottom right',
-            on: 'click'
-        });
-    };
+    
     var fnUiCalendarDate = function() {
         $('.ui.calendar.date').calendar({type: 'date'});
     };
@@ -856,101 +829,7 @@ $(document).ready(function() {
             chart.regions([]);
         });
     };
-    var fnPageActivityAdd = function() {
-        fnMenuNotification();
-        fnUiDropdown();
-        fnUiCalendarDate();
-        fnUiCalendarTime();
 
-        var map = fnMapInit();
-
-        var drawnItems = L.featureGroup().addTo(map);
-        var drawControl = new L.Control.Draw({
-            edit: {
-                featureGroup: drawnItems,
-                poly : {
-                    allowIntersection : false
-                }
-            },
-            draw: {
-                polyline: true,
-                polygon: false,
-                marker: false,
-                rectangle: false,
-                circle: false,
-                circlemarker: false,
-            }
-        });
-
-        map.addControl(drawControl);
-
-        // Truncate value based on number of decimals
-        var _round = function(num, len) {
-            return Math.round(num*(Math.pow(10, len)))/(Math.pow(10, len));
-        };
-        // Generate popup content based on layer type
-        // - Returns HTML string, or null if unknown object
-        var getDistance = function(layer) {
-            if (layer instanceof L.Polyline) {
-                var latlngs = layer._defaultShape ? layer._defaultShape() : layer.getLatLngs(),
-                    distance = 0;
-                if (latlngs.length < 2) {
-                    return distance;
-                } else {
-                    for (var i = 0; i < latlngs.length-1; i++) {
-                        distance += latlngs[i].distanceTo(latlngs[i+1]);
-                    }
-                    return _round(distance, 0);
-                }
-            }
-            return null;
-        }
-        var getPopupContent = function(layer) {
-            if (layer instanceof L.Polyline) {
-                var distance = getDistance(layer);
-                if (distance == 0) {
-                    return "Distance: N/A";
-                }
-                return "Distance: "+distance+" m";
-            }
-            return null;
-        };
-
-        map.on(L.Draw.Event.CREATED, function(event) {
-            var layer = event.layer;
-            var content = getPopupContent(layer);
-            if (content !== null) {
-                layer.bindPopup(content);
-                $('#distance').val(getDistance(layer));
-            }
-            drawnItems.addLayer(layer);
-
-            drawControl.setDrawingOptions({
-                polyline: false
-            });
-            map.removeControl(drawControl);
-            map.addControl(drawControl);
-        });
-        map.on(L.Draw.Event.EDITED, function(event) {
-            var layers = event.layers,
-                content = null;
-            layers.eachLayer(function(layer) {
-                content = getPopupContent(layer);
-                if (content !== null) {
-                    layer.setPopupContent(content);
-                    $('#distance').val(getDistance(layer));
-                }
-            });
-        });
-        map.on(L.Draw.Event.DELETED, function(event) {
-
-            drawControl.setDrawingOptions({
-                polyline: true
-            });
-            map.removeControl(drawControl);
-            map.addControl(drawControl);
-        });
-    };
     var fnPageActivityImport = function() {
         fnMenuNotification();
         fnUiDropdown();
@@ -1292,6 +1171,5 @@ $(document).ready(function() {
                 show: false
             },
         });
-
     };
 });
