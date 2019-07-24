@@ -1,160 +1,183 @@
 {% extends "app/layout.html.twig" %}
 
 {% block stylesheets %}
-    {{ encore_entry_link_tags('app_dashboard') }}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('build/lib/c3.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('build/css/app_dashboard.css') }}" />
 {% endblock %}
 
 {% block javascripts %}
-    {{ encore_entry_script_tags('app_dashboard') }}
+    {{ parent() }}
+    <script src="{{ asset('build/lib/d3.min.js') }}"></script>
+    <script src="{{ asset('build/lib/c3.min.js') }}"></script>
+    <script src="{{ asset('build/js/app_dashboard.js') }}"></script>
 {% endblock %}
 
 {% block content %}
-<div class="stretched row top aligned ">
-    <div class="four wide column">
-        <h2>Statistics</h2>
-        <div class="ui list">
-            <div class="item">
-                <i class="big rebel icon"></i>
-                <div class="content">
-                    <div class="header">Running</div>
-                    <div class="description">15 Activities</div>
-                    <div class="list">
-                        <div class="item" >
-                            <div class="right floated content">
-                                <div class="ui label">322.8 km</div>
-                            </div>
-                            <i class="right triangle icon"></i>
-                            <div class="content">
-                                <div class="header">Distance</div>
-                                <div class="description">Average : 18.2 km</div>
-                                <div class="description">Maximum : 42.1 km</div>
-                                <div class="description">Minimum : 2.3 km</div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="right floated content">
-                                <div class="ui label">120h 18min</div>
-                            </div>
-                            <i class="right triangle icon"></i>
-                            <div class="content">
-                                <div class="header">Duration</div>
-                                <div class="description">Average : 1h 3min</div>
-                                <div class="description">Maximum : 10min</div>
-                                <div class="description">Minimum : 4h 5min</div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <i class="right triangle icon"></i>
-                            <div class="content">
-                                <div class="header">Pace</div>
-                                <div class="description">Average : 10m 3s / kms</div>
-                                <div class="description">Maximum : 8m 13s / kms</div>
-                                <div class="description">Minimum : 12min 23s / kms</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<div class="ui basic segment">
+    <!--
+        <div class="row">
+        <div class="column">
+            <div class="ui placeholder segment">
+            <div class="ui icon header">
+            <i class="calendar times outline icon"></i>
+            No activities.
             </div>
-            <div class="item">
-                <i class="big empire icon"></i>
-                <div class="content">
-                    <div class="header">Bike</div>
-                    <div class="description">18 Activities</div>
-                    <div class="list">
-                        <div class="item" >
-                            <div class="right floated content">
-                                <div class="ui label">322.8 km</div>
-                            </div>
-                            <i class="right triangle icon"></i>
-                            <div class="content">
-                                <div class="header">Distance</div>
-                                <div class="description">Average : 18.2 km</div>
-                                <div class="description">Maximum : 42.1 km</div>
-                                <div class="description">Minimum : 2.3 km</div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="right floated content">
-                                <div class="ui label">120h 18min</div>
-                            </div>
-                            <i class="right triangle icon"></i>
-                            <div class="content">
-                                <div class="header">Duration</div>
-                                <div class="description">Average : 1h 3min</div>
-                                <div class="description">Maximum : 10min</div>
-                                <div class="description">Minimum : 4h 5min</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <a class="ui primary button" href="activities.html">Create a new activity</a>
             </div>
         </div>
+        </div>
     </div>
-    <div class="eight wide column">
-        <div class="ui grid">
-            <div class="sixteen wide column">
-                <h2>Activities</h2>
-                <div>
-                    <div id="graphActivities" style="height: 410px"></div>
+        -->
+    <div class="ui grid">
+        <div class="stretched row top aligned ">
+            <div class="four wide column">
+                <h2>Statistics</h2>
+                <div class="ui list">
+                    <div class="item">
+                        <i class="big rebel icon"></i>
+                        <div class="content">
+                            <div class="header">Running</div>
+                            <div class="description">15 Activities</div>
+                            <div class="list">
+                                <div class="item" >
+                                    <div class="right floated content">
+                                        <div class="ui label">322.8 km</div>
+                                    </div>
+                                    <i class="right triangle icon"></i>
+                                    <div class="content">
+                                        <div class="header">Distance</div>
+                                        <div class="description">Average : 18.2 km</div>
+                                        <div class="description">Maximum : 42.1 km</div>
+                                        <div class="description">Minimum : 2.3 km</div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="right floated content">
+                                        <div class="ui label">120h 18min</div>
+                                    </div>
+                                    <i class="right triangle icon"></i>
+                                    <div class="content">
+                                        <div class="header">Duration</div>
+                                        <div class="description">Average : 1h 3min</div>
+                                        <div class="description">Maximum : 10min</div>
+                                        <div class="description">Minimum : 4h 5min</div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <i class="right triangle icon"></i>
+                                    <div class="content">
+                                        <div class="header">Pace</div>
+                                        <div class="description">Average : 10m 3s / kms</div>
+                                        <div class="description">Maximum : 8m 13s / kms</div>
+                                        <div class="description">Minimum : 12min 23s / kms</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <i class="big empire icon"></i>
+                        <div class="content">
+                            <div class="header">Bike</div>
+                            <div class="description">18 Activities</div>
+                            <div class="list">
+                                <div class="item" >
+                                    <div class="right floated content">
+                                        <div class="ui label">322.8 km</div>
+                                    </div>
+                                    <i class="right triangle icon"></i>
+                                    <div class="content">
+                                        <div class="header">Distance</div>
+                                        <div class="description">Average : 18.2 km</div>
+                                        <div class="description">Maximum : 42.1 km</div>
+                                        <div class="description">Minimum : 2.3 km</div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="right floated content">
+                                        <div class="ui label">120h 18min</div>
+                                    </div>
+                                    <i class="right triangle icon"></i>
+                                    <div class="content">
+                                        <div class="header">Duration</div>
+                                        <div class="description">Average : 1h 3min</div>
+                                        <div class="description">Maximum : 10min</div>
+                                        <div class="description">Minimum : 4h 5min</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="six wide column">
-                <h2>Sleep</h2>
-                <div>
-                    <div id="graphSleep" style="height: 170px"></div>
-                </div>
-            </div>
-            <div class="six wide column">
-                <h2>Steps</h2>
-                <div>
-                    <div id="graphSteps" style="height: 170px"></div>
+            <div class="eight wide column">
+                <div class="ui grid">
+                    <div class="sixteen wide column">
+                        <h2>Activities</h2>
+                        <div>
+                            <div id="graphActivities" style="height: 410px"></div>
+                        </div>
+                    </div>
+                    <div class="six wide column">
+                        <h2>Sleep</h2>
+                        <div>
+                            <div id="graphSleep" style="height: 170px"></div>
+                        </div>
+                    </div>
+                    <div class="six wide column">
+                        <h2>Steps</h2>
+                        <div>
+                            <div id="graphSteps" style="height: 170px"></div>
+                        </div>
+                    </div>
+                    <div class="four wide column">
+                        <h2>Objectives</h2>
+                        <div>
+                            <div id="graphObjectives" style="height: 170px"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="four wide column">
-                <h2>Objectives</h2>
-                <div>
-                    <div id="graphObjectives" style="height: 170px"></div>
+                <h2>Friends</h2>
+                <div class="ui large very relaxed list">
+                    <div class="item">
+                        <div class="right floated content">
+                            <div class="ui blue label">15 Activities</div>
+                        </div>
+                        <img class="ui avatar image" src="https://semantic-ui.com/images/avatar2/small/lena.png">
+                        <div class="content"><a class="header" href="profile.html">Lindsay</a></div>
+                    </div>
+                    <div class="item">
+                        <div class="right floated content">
+                            <div class="ui blue label">4 Activities</div>
+                        </div>
+                        <img class="ui avatar image" src="https://semantic-ui.com/images/avatar2/small/lindsay.png">
+                        <div class="content"><a class="header" href="profile.html">Matthew</a></div>
+                    </div>
+                    <div class="item">
+                        <div class="right floated content">
+                            <div class="ui blue label">3 Activities</div>
+                        </div>
+                        <img class="ui avatar image" src="https://semantic-ui.com/images/avatar2/small/mark.png">
+                        <div class="content"><a class="header" href="profile.html">Jenny Hess</a></div>
+                    </div>
+                    <div class="item">
+                        <div class="right floated content">
+                            <div class="ui blue label">2 Activities</div>
+                        </div>
+                        <img class="ui avatar image" src="https://semantic-ui.com/images/avatar2/small/molly.png">
+                        <div class="content"><a class="header" href="profile.html">Veronika Ossi</a></div>
+                    </div>
+                    <div class="item">
+                        <div class="right floated content">
+                            <div class="ui blue  label">1 Activity</div>
+                        </div>
+                        <img class="ui avatar image" src="https://semantic-ui.com/images/avatar/small/christian.jpg">
+                        <div class="content"><a class="header" href="profile.html">Robert</a></div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="four wide column">
-        <h2>Friends</h2>
-        <div class="ui large very relaxed list">
-            <div class="item">
-                <div class="right floated content">
-                    <div class="ui blue label">15 Activities</div>
-                </div>
-                <img class="ui avatar image" src="https://semantic-ui.com/images/avatar2/small/lena.png">
-                <div class="content"><a class="header" href="profile.html">Lindsay</a></div>
-            </div>
-            <div class="item">
-                <div class="right floated content">
-                    <div class="ui blue label">4 Activities</div>
-                </div>
-                <img class="ui avatar image" src="https://semantic-ui.com/images/avatar2/small/lindsay.png">
-                <div class="content"><a class="header" href="profile.html">Matthew</a></div>
-            </div>
-            <div class="item">
-                <div class="right floated content">
-                    <div class="ui blue label">3 Activities</div>
-                </div>
-                <img class="ui avatar image" src="https://semantic-ui.com/images/avatar2/small/mark.png">
-                <div class="content"><a class="header" href="profile.html">Jenny Hess</a></div>
-            </div>
-            <div class="item">
-                <div class="right floated content">
-                    <div class="ui blue label">2 Activities</div>
-                </div>
-                <img class="ui avatar image" src="https://semantic-ui.com/images/avatar2/small/molly.png">
-                <div class="content"><a class="header" href="profile.html">Veronika Ossi</a></div>
-            </div>
-            <div class="item">
-                <div class="right floated content">
-                    <div class="ui blue  label">1 Activity</div>
-                </div>
-                <img class="ui avatar image" src="https://semantic-ui.com/images/avatar/small/christian.jpg">
-                <div class="content"><a class="header" href="profile.html">Robert</a></div>
             </div>
         </div>
     </div>

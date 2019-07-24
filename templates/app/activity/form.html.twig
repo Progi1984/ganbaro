@@ -1,0 +1,155 @@
+{% extends "app/layout.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('build/lib/calendar.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('build/lib/leaflet.css') }}" />
+    <link rel="stylesheet" href="{{ asset('build/lib/leaflet.draw.css') }}" />
+    <link rel="stylesheet" href="{{ asset('build/css/app_activity_add.css') }}" />
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('build/lib/leaflet.js') }}"></script>
+    <script src="{{ asset('build/lib/leaflet.draw.js') }}"></script>
+    <script src="{{ asset('build/lib/calendar.min.js') }}"></script>
+    <script src="{{ asset('build/js/app_activity_add.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="ui container">
+    <div class="ui attached segment">
+        {% set formClass = 'ui -loading form' ~ (form.vars.valid ? '' : ' error')%}
+        {{ form_start(form, {'attr': {'class': formClass}}) }}
+            {{ form_widget(form._token) }}  
+            {% if errors is not empty %}
+            <div class="ui error message">
+                <i class="close icon"></i>
+                <div class="header">
+                    There were some errors with your submission
+                </div>
+                <ul class="list">
+                {% for error in errors %}
+                    <li>{{ error.message }}</li>
+                {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+            <div class="three fields">
+                <div class="field">
+                    <label>Sport</label>
+                    <div class="ui fluid search normal selection dropdown">
+                        {{ form_widget(form.type) }}
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Select Sport</div>
+                        <div class="menu">
+                            {% for type in activityType|sort %}
+                            <div class="item" data-value="{{ type }}">{# TODO <i class="fr flag"></i>#}{{ type }}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Date</label>
+                    <div class="ui calendar date">
+                        <div class="ui input left icon">
+                            <i class="calendar icon"></i>
+                            {{ form_widget(form.date, {'attr': {'placeholder': 'Date'}}) }}
+                        </div>
+                    </div> 
+                </div>
+                <div class="field">
+                    <label>Time</label>
+                    <div class="ui calendar time">
+                        <div class="ui input left icon">
+                            <i class="time icon"></i>
+                            {{ form_widget(form.time, {'attr': {'placeholder': 'Time'}}) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="two fields">
+                <div class="field">
+                    <label>Distance</label>
+                    <div class="ui right labeled input">
+                        {{ form_widget(form.distance, {'attr': {'placeholder': 'Enter distance...'}}) }}
+                        <div class="ui dropdown label">
+                            {{ form_widget(form.distance_unit) }}
+                            <div class="text">{{ form.distance_unit.vars.value }}</div>
+                            <i class="dropdown icon"></i>
+                            <div class="menu">
+                                {% for distanceUnit in activityDistanceUnit %}
+                                <div class="item" data-value="{{ distanceUnit }}">{{ distanceUnit }}</div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Elevation</label>
+                    <div class="ui right labeled input">
+                        {{ form_widget(form.elevation, {'attr': {'placeholder': 'Enter elevation...'}}) }}
+                        <div class="ui dropdown label">
+                            {{ form_widget(form.elevation_unit) }}
+                            <div class="text">{{ form.elevation_unit.vars.value }}</div>
+                            <i class="dropdown icon"></i>
+                            <div class="menu">
+                                {% for distanceUnit in activityDistanceUnit %}
+                                <div class="item" data-value="{{ distanceUnit }}">{{ distanceUnit }}</div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="two fields">
+                <div class="field">
+                    <label>Duration</label>
+                    <div class="inline fields">
+                        <div class="ui right labeled input">
+                            {{ form_widget(form.duration_hour, {'attr': {'placeholder': '00'}}) }}
+                            <div class="ui basic label">hr</div>
+                        </div>
+                        <div class="ui right labeled input">
+                            {{ form_widget(form.duration_minute, {'attr': {'placeholder': '00'}}) }}
+                            <div class="ui basic label">min</div>
+                        </div>
+                        <div class="ui right labeled input">
+                            {{ form_widget(form.duration_second, {'attr': {'placeholder': '00'}}) }}
+                            <div class="ui basic label">sec</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Calories</label>
+                    <div class="ui right labeled input">
+                        {{ form_widget(form.energy, {'attr': {'placeholder': 'Enter calories...'}}) }}  
+                        <div class="ui dropdown label">
+                            {{ form_widget(form.energy_unit) }}
+                            <div class="text">{{ form.energy_unit.vars.value }}</div>
+                            <i class="dropdown icon"></i>
+                            <div class="menu">
+                                {% for energyUnit in activityEnergyUnit %}
+                                <div class="item" data-value="{{ energyUnit }}">{{ energyUnit }}</div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+            <div class="field">
+                <label>Description</label>
+                {{ form_widget(form.description, {'attr': {'rows': '3'}}) }}  
+            </div>
+            <div class="field">
+                <label>Carte</label>
+                {{ form_widget(form.gps_points) }}
+                <div id="map" style="width: calc(100%); height: 600px; border: 1px solid #ccc"></div>
+            </div>
+        <form class="ui -loading form">
+            {{ form_widget(form.save, {'attr': {'class': 'ui green button'}, 'label': 'Save'}) }}  
+        </form>
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}

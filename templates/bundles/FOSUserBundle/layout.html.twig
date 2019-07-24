@@ -5,25 +5,28 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
         <title>Oikoshi</title>
-        {{ encore_entry_link_tags('login') }}
+        <link rel="stylesheet" href="{{ asset('build/lib/semantic.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('build/css/login.css') }}" />
     </head>
     <body id="pageLogin">
-    {% if app.request.hasPreviousSession %}
-        {% for type, messages in app.session.flashbag.all() %}
-            {% for message in messages %}
-                <div class="flash-{{ type }}">
-                    {{ message }}
-                </div>
+        {% if app.request.hasPreviousSession %}
+            {% for type, messages in app.session.flashbag.all() %}
+                {% for message in messages %}
+                    <div class="flash-{{ type }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
             {% endfor %}
-        {% endfor %}
-    {% endif %}
-    <div class="ui middle aligned center aligned grid">
-        <div class="column">
-            {% block fos_user_content %}
-            {% endblock fos_user_content %}
+        {% endif %}
+        <div class="ui middle aligned center aligned grid">
+            <div class="column">
+                {% block fos_user_content %}
+                {% endblock fos_user_content %}
+            </div>
         </div>
-    </div>
 
-    {{ encore_entry_script_tags('login') }}
+        <script src="{{ asset('build/lib/jquery.min.js') }}"></script>
+        <script src="{{ asset('build/lib/semantic.min.js') }}"></script>
+        <script src="{{ asset('build/js/login.js') }}"></script>
     </body>
 </html>

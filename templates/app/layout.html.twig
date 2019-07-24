@@ -6,33 +6,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
         <title>Oikoshi</title>
         {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('build/lib/semantic.min.css') }}" />
+            <link rel="stylesheet" href="{{ asset('build/css/app_shared.css') }}" />
         {% endblock stylesheets %}
     </head>
     <body>
         {% include 'app/top_menu.html.twig' %}
         <div class="ui bottom attached">
-            <div class="ui basic segment">
-                <!--
-                  <div class="row">
-                    <div class="column">
-                      <div class="ui placeholder segment">
-                      <div class="ui icon header">
-                        <i class="calendar times outline icon"></i>
-                        No activities.
-                      </div>
-                      <a class="ui primary button" href="activities.html">Create a new activity</a>
-                     </div>
-                    </div>
-                  </div>
-                </div>
-                  -->
-                <div class="ui grid">
-                {% block content %}
-                {% endblock content %}
-                </div>
-            </div>
+            {% block content %}
+            {% endblock content %}
         </div>
         {% block javascripts %}
+            <script src="{{ asset('build/lib/jquery.min.js') }}"></script>
+            <script src="{{ asset('build/lib/semantic.min.js') }}"></script>
+            <script src="{{ asset('build/js/app_shared.js') }}"></script>
         {% endblock javascripts %}
     </body>
 </html>

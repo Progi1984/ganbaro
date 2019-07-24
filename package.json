@@ -1,20 +1,4 @@
 {
-    "devDependencies": {
-        "@mapbox/leaflet-omnivore": "^0.3.4",
-        "@symfony/webpack-encore": "^0.22.0",
-        "c3": "^0.6.12",
-        "fullcalendar": "^3.10.0",
-        "jquery": "^3.3.1",
-        "leaflet": "^1.4.0",
-        "leaflet-draw": "^1.0.4",
-        "leaflet.markercluster": "^1.4.1",
-        "moment": "^2.24.0",
-        "node-sass": "^4.11.0",
-        "sass-loader": "^7.0.1",
-        "semantic-ui-calendar": "^0.0.8",
-        "tablesort": "^5.1.0",
-        "webpack-notifier": "^1.6.0"
-    },
     "license": "UNLICENSED",
     "private": true,
     "scripts": {
@@ -24,7 +8,19 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "@mapbox/leaflet-omnivore": "^0.3.4",
+        "c3": "0.6.11",
+        "d3": "5.8.0",
+        "fullcalendar": "^3.10.0",
         "gulp": "^4.0.0",
-        "semantic-ui": "^2.4.2"
+        "gulp-sass": "^4.0.2",
+        "jquery": "3.3.1",
+        "leaflet": "^1.4.0",
+        "leaflet-draw": "^1.0.4",
+        "leaflet.markercluster": "^1.4.1",
+        "moment": "^2.24.0",
+        "semantic-ui": "^2.4.2",
+        "semantic-ui-calendar": "^0.0.8",
+        "tablesort": "^5.1.0"
     }
 }
