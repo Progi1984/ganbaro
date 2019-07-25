@@ -32,7 +32,7 @@ before_script:
 - php composer.phar install
 - npm install
 # Assets
-- gulp
+- ./node_modules/gulp/bin/gulp.js
 
 services:
 - mysql
@@ -59,4 +59,4 @@ syntax:lint:twig:
 syntax:lint:scss:
   stage: syntax
   script:
-    - gulp lintSCSS
+    - ./node_modules/gulp/bin/gulp.js lintSCSS
