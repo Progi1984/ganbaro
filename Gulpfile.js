@@ -28,8 +28,8 @@ function importLib() {
     // jQuery
     './node_modules/jquery/dist/jquery.min.js',
     // Semantic UI
-    './node_modules/semantic-ui/dist/semantic.min.js',
-    './node_modules/semantic-ui/dist/semantic.min.css',
+    './node_modules/semantic-ui-css/semantic.min.js',
+    './node_modules/semantic-ui-css/semantic.min.css',
     // Semantic UI Calendar
     './node_modules/semantic-ui-calendar/dist/calendar.min.js',
     './node_modules/semantic-ui-calendar/dist/calendar.min.css',
@@ -58,8 +58,8 @@ function importLib() {
 
 // Copy statics for Semantic UI
 function importLibSemanticUiStatics() {
-  return src('node_modules/semantic-ui/dist/themes/default/**/*.*', {
-    base: 'node_modules/semantic-ui/dist/'
+  return src('node_modules/semantic-ui-css/themes/default/**/*.*', {
+    base: 'node_modules/semantic-ui-css/'
   })
   .pipe(dest(pathBuild + '/lib'));
 }
