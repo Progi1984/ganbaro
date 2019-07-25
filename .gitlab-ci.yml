@@ -7,6 +7,16 @@ cache:
   - vendor/
 
 before_script:
+# Node / YARN / NPM
+- apt-get install -y --no-install-recommends gnupg
+- curl -sL https://deb.nodesource.com/setup_10.x | bash -
+- apt-get update
+- apt-get install -y --no-install-recommends nodejs
+- curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+- echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+- apt-get update
+- apt-get install -y --no-install-recommends yarn
+- npm install -g npm
 # Update & Install tools
 - apt-get update -yqq
 - apt-get install git -yqq
@@ -20,6 +30,9 @@ before_script:
 - curl -sS https://getcomposer.org/installer | php
 # Install all project dependencies
 - php composer.phar install
+- npm install
+# Assets
+- gulp
 
 services:
 - mysql
@@ -42,3 +55,8 @@ syntax:lint:twig:
   stage: syntax
   script:
     - php bin/console lint:twig templates/
+
+syntax:lint:scss:
+  stage: syntax
+  script:
+    - gulp lintSCSS

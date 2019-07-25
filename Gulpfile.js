@@ -3,6 +3,7 @@ var libCleanCss = require('gulp-clean-css');
 var libDel = require('del');
 var libSass = require('gulp-sass');
 var libUglify = require('gulp-uglify');
+var libStylelint = require('gulp-stylelint');
 
 var pathBuild = './public/build';
 
@@ -100,10 +101,23 @@ function jsMinify() {
     .pipe(dest(pathBuild + '/js'));
 }
 
+function lintSCSS() {
+  return src('assets/css/*.scss')
+    .pipe(libStylelint({
+      reporters: [
+        {formatter: 'string', console: true}
+      ]
+    }));
+}
+
 exports.default = series(
     init,
     clean, 
     parallel(importLib, importLibSemanticUiStatics, importLibLeafletImages, importLibLeafletDrawImages),
     cssTranspile,
     parallel(cssMinify, jsMinify)
+);
+
+exports.lintSCSS = series(
+  lintSCSS
 );

@@ -187,12 +187,12 @@ div [class*="right aligned"] {
     margin: 0.5em;
 }
 .calHeatmap .month {
-    margin-right: 0.4em;;
+    margin-right: 0.4em;
 }
 .calHeatmap .month-name {
     font-size: 0.8rem;
     fill: #777;
-    font-family: Arial, Helvetica;
+    font-family: Arial, Helvetica, sans-serif;
 }
 .calHeatmap .day.hover {
     stroke: #6d6E70;
