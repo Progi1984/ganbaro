@@ -51,12 +51,17 @@ syntax:phpcs:
   script:
     - ./vendor/bin/phpcs --error-severity=1 --warning-severity=8 --extensions=php
 
-syntax:lint:twig:
+syntax:lint:js:
   stage: syntax
   script:
-    - php bin/console lint:twig templates/
+    - ./node_modules/gulp/bin/gulp.js lintJS
 
 syntax:lint:scss:
   stage: syntax
   script:
     - ./node_modules/gulp/bin/gulp.js lintSCSS
+
+syntax:lint:twig:
+  stage: syntax
+  script:
+    - php bin/console lint:twig templates/
