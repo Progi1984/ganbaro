@@ -1,0 +1,32 @@
+{
+    "extends": ["airbnb", "plugin:prettier/recommended"],
+    "rules": {
+      "react/jsx-filename-extension": [
+        1,
+        {
+          "extensions": [".js", "jsx"]
+        }
+      ],
+      "prettier/prettier": "error",
+      "max-len": ["error", 80],
+      // Specific project
+      "no-underscore-dangle": [
+        "error", 
+        {
+          "allow": [
+            // Leaflet
+            "_defaultShape"
+          ]
+        }
+      ],
+      "no-unused-vars": [
+        "error", 
+        {
+          "varsIgnorePattern": "fnShared" 
+        }
+      ]
+    },
+    "env": {
+      "browser": true
+    }
+}

@@ -2,8 +2,9 @@ var { dest, parallel, series, src } = require('gulp');
 var libCleanCss = require('gulp-clean-css');
 var libDel = require('del');
 var libSass = require('gulp-sass');
-var libUglify = require('gulp-uglify');
+var libUglify = require('gulp-uglify-es').default;
 var libStylelint = require('gulp-stylelint');
+var libEslint = require('gulp-eslint');
 
 var pathBuild = './public/build';
 
@@ -110,6 +111,29 @@ function lintSCSS() {
     }));
 }
 
+function lintJS() {
+  return src(['assets/js/*.js', '!assets/js/app.js'])
+    .pipe(libEslint({
+        "globals":[
+          // jQuery
+          "jQuery",
+          "$",
+          // Leaflet
+          "L",
+          // c3
+          "c3",
+          "d3"
+        ],
+    }))
+    .pipe(libEslint.format())
+    .pipe(libEslint.results(results => {
+        console.log(`Num Files: ${results.length}`);
+        console.log(`Total Warnings: ${results.warningCount}`);
+        console.log(`Total Errors: ${results.errorCount}`);
+    }))
+    .pipe(libEslint.failAfterError());;
+}
+
 exports.default = series(
     init,
     clean, 
@@ -120,4 +144,8 @@ exports.default = series(
 
 exports.lintSCSS = series(
   lintSCSS
+);
+
+exports.lintJS = series(
+  lintJS
 );

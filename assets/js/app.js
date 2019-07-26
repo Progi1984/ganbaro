@@ -1,41 +1,3 @@
-// CSS
-require('../../node_modules/semantic-ui/dist/semantic.css');
-require ('../../node_modules/semantic-ui-calendar/dist/calendar.css');
-
-// CSS : Leaflet
-require('../../node_modules/leaflet/dist/leaflet.css');
-require('../../node_modules/leaflet.markercluster/dist/MarkerCluster.css');
-require('../../node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css');
-require('../../node_modules/leaflet-draw/dist/leaflet.draw.css');
-// CSS : FullCalendar
-require('../../node_modules/fullcalendar/dist/fullcalendar.min.css');
-// CSS : c3.js
-require('../../node_modules/c3/c3.min.css');
-
-// CSS : Runtime
-require('../css/app.scss');
-
-// JS
-require ('../../node_modules/semantic-ui/dist/semantic.js');
-require ('../../node_modules/semantic-ui-calendar/dist/calendar.js');
-require ('../../node_modules/tablesort/dist/tablesort.min.js');
-
-// JS : Leaflet
-require('../../node_modules/leaflet/dist/leaflet-src.js');
-require('../../node_modules/leaflet.markercluster/dist/leaflet.markercluster-src.js');
-require('../../node_modules/@mapbox/leaflet-omnivore/leaflet-omnivore.js');
-require('../../node_modules/leaflet-draw/dist/leaflet.draw.js');
-// JS : FullCalendar
-require('../../node_modules/moment/moment.js');
-require('../../node_modules/fullcalendar/dist/fullcalendar.min.js');
-require('../../node_modules/fullcalendar/dist/locale-all.js');
-// JS : c3.js
-require('../../node_modules/d3/dist/d3.min.js');
-require('../../node_modules/c3/c3.min.js');
-
-
-// JS : Runtime
-var $ = require('jquery');
 $(document).ready(function() {
     // Initialization
     var mapsPlaceholder = [];
@@ -45,7 +7,7 @@ $(document).ready(function() {
     
     var fnUiCalendarDate = function() {
         $('.ui.calendar.date').calendar({type: 'date'});
-    };
+    };eg
     var fnUiCalendarHeatmap = function(selector, dateData){
         var weeksInMonth = function(month){
             var m = d3.timeMonth.floor(month)
