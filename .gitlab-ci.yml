@@ -48,7 +48,7 @@ stages:
 
 qa:phpstan:
   image: jakzal/phpqa
-  stage: tests
+  stage: qa
   script: phpstan analyse --level 2
 
 syntax:phpcs:
