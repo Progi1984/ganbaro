@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Activity;
-use App\Form\ActivityType;
+use App\Form\Type\ActivityType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;

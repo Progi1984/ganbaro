@@ -45,6 +45,7 @@ variables:
 stages:
   - syntax
   - qa
+  - test
 
 qa:phpstan:
   stage: qa
@@ -70,3 +71,8 @@ syntax:lint:twig:
   stage: syntax
   script:
     - php bin/console lint:twig templates/
+
+test:phpunit:
+  stage: test
+  script:
+    - ./vendor/bin/phpunit
