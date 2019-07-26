@@ -44,7 +44,12 @@ variables:
 
 stages:
   - syntax
-  #- tests
+  - qa
+
+qa:phpstan:
+  image: jakzal/phpqa
+  stage: tests
+  script: phpstan analyse --level 2
 
 syntax:phpcs:
   stage: syntax
