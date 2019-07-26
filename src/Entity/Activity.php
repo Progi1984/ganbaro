@@ -302,10 +302,10 @@ class Activity
     }
 
     /**
-     * @param float $energy
+     * @param int $energy
      * @return self
      */
-    public function setEnergy(?float $energy): self
+    public function setEnergy(?int $energy): self
     {
         $this->energy = $energy;
         return $this;

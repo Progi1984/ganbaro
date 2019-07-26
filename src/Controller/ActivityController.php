@@ -69,7 +69,7 @@ class ActivityController extends AbstractController
     public function activityEditAction(Request $request, int $id)
     {
         // Get the activity
-        $activity = $this->em->getRepository(Activity::class)->findOneById($id);
+        $activity = $this->em->getRepository(Activity::class)->findOneBy(['id' => $id]);
         // Activity Not Found
         if (!$activity) {
             throw $this->createNotFoundException();
