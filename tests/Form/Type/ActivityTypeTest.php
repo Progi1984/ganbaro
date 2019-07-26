@@ -5,10 +5,10 @@ namespace App\Tests\Form\Type;
 use App\Entity\Activity;
 use App\Form\Type\ActivityType;
 use Symfony\Component\Form\Test\TypeTestCase;
-use Symfony\Component\Validator\Validation;
 use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
+use Symfony\Component\Validator\Validation;
 
-class TestedTypeTest extends TypeTestCase
+class ActivityTypeTest extends TypeTestCase
 {
     protected function getExtensions()
     {
