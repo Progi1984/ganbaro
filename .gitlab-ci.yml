@@ -75,7 +75,7 @@ syntax:lint:twig:
 test:behat:
   stage: test
   before_script:
-    #- apt-get install software-properties-common
+    - apt-get install python-software-properties
     - add-apt-repository ppa:canonical-chromium-builds/stage
     - apt-get update
     - apt-get install chromium-browser
