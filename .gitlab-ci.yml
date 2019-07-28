@@ -75,10 +75,10 @@ syntax:lint:twig:
 test:behat:
   stage: test
   before_script:
-    - sudo apt-get install software-properties-common
-    - sudo add-apt-repository ppa:canonical-chromium-builds/stage
-    - sudo apt-get update
-    - sudo apt-get install chromium-browser
+    - apt-get install software-properties-common
+    - add-apt-repository ppa:canonical-chromium-builds/stage
+    - apt-get update
+    - apt-get install chromium-browser
     - chromium-browser  --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 --disable-gpu --headless --disable-logging &
     - cp .env.test .env
     - cp .behat.yml.dist .behat.yml

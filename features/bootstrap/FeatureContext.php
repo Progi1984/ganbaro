@@ -1,16 +1,8 @@
 <?php
 
 use Behat\Behat\Context\Context;
-use Behat\Mink\Driver\BrowserKitDriver;
-use Symfony\Component\BrowserKit\Cookie;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\KernelInterface;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Behat\MinkExtension\Context\RawMinkContext;
-use DMore\ChromeDriver\ChromeBrowser;
-use Behat\Mink\Exception\UnsupportedDriverActionException;
-use DMore\ChromeDriver\ChromeDriver;
+use Symfony\Component\HttpKernel\KernelInterface;
 
 /**
  * This context class contains the definitions of the steps used by the demo
