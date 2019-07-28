@@ -72,6 +72,21 @@ syntax:lint:twig:
   script:
     - php bin/console lint:twig templates/
 
+test:behat:
+  stage: test
+  before_script:
+    - sudo apt-get install software-properties-common
+    - sudo add-apt-repository ppa:canonical-chromium-builds/stage
+    - sudo apt-get update
+    - sudo apt-get install chromium-browser
+    - chromium-browser  --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 --disable-gpu --headless --disable-logging &
+    - cp .env.test .env
+    - cp .behat.yml.dist .behat.yml
+    - php bin/console doctrine:database:update --dump-sql --force
+    - php bin/console fos:user:create user user@domain.tld p@ssword
+  script:
+    - APP_ENV=test ./vendor/bin/behat
+
 test:phpunit:
   stage: test
   script:

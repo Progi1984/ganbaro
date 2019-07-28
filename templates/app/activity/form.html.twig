@@ -18,8 +18,8 @@
 
 {% block content %}
 <div class="ui container">
-    <div class="ui attached segment">
-        {% set formClass = 'ui -loading form' ~ (form.vars.valid ? '' : ' error')%}
+    <div class="ui attached segment">   
+        {% set formClass = 'ui -loading form' ~ (form.vars.submitted ? (form.vars.valid ? ' success' : ' error') : '') %}
         {{ form_start(form, {'attr': {'class': formClass}}) }}
             {{ form_widget(form._token) }}  
             {% if errors is not empty %}

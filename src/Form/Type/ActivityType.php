@@ -26,7 +26,7 @@ class ActivityType extends AbstractType
             ->add('type', HiddenType::class, [
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Sport : This field can\' be empty.',
+                        'message' => 'Sport : This field can\'t be empty.',
                     ]),
                     new Choice([
                         'choices' => Activity::TYPE,
@@ -37,7 +37,7 @@ class ActivityType extends AbstractType
             ->add('date', TextType::class, [
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Date : This field can\' be empty.',
+                        'message' => 'Date : This field can\'t be empty.',
                     ]),
                     new Date([
                         'message' => 'Date : The value is not well formatted (Format YYYY-mm-dd).'
@@ -48,7 +48,7 @@ class ActivityType extends AbstractType
             ->add('time', TextType::class, [
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Time : This field can\' be empty.',
+                        'message' => 'Time : This field can\'t be empty.',
                     ]),
                     new Time([
                         'message' => 'Time : The value is not well formatted (Format HH:mm:ss).'
@@ -59,7 +59,7 @@ class ActivityType extends AbstractType
             ->add('distance', TextType::class, [
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Distance : This field can\' be empty.',
+                        'message' => 'Distance : This field can\'t be empty.',
                     ]),
                     new GreaterThan([
                         'value' => 0,
@@ -70,7 +70,7 @@ class ActivityType extends AbstractType
             ->add('distance_unit', HiddenType::class, [
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Distance Unit : This field can\' be empty.',
+                        'message' => 'Distance Unit : This field can\'t be empty.',
                     ]),
                     new Choice([
                         'choices' => Activity::UNIT_DISTANCE,
@@ -109,7 +109,7 @@ class ActivityType extends AbstractType
                 'constraints' => [
                     new LessThan([
                         'value' => 60,
-                        'message' => 'Duration : The duration must be less than 60 minutes'
+                        'message' => 'Duration : The duration must be less than 60 minutes.'
                     ])
                 ],
                 'mapped' => false,
@@ -119,7 +119,7 @@ class ActivityType extends AbstractType
                 'constraints' => [
                     new LessThan([
                         'value' => 60,
-                        'message' => 'Duration : The duration must be less than 60 seconds'
+                        'message' => 'Duration : The duration must be less than 60 seconds.'
                     ])
                 ],
                 'mapped' => false,
