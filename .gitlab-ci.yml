@@ -78,7 +78,7 @@ test:behat:
     - uname -a
     - cat /etc/apt/sources.list
     - apt-get update
-    - apt-get install chromium
+    - apt-get install -y --no-install-recommends chromium
     - chromium --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 --disable-gpu --headless --disable-logging &
     - cp .env.test .env
     - cp .behat.yml.dist .behat.yml
