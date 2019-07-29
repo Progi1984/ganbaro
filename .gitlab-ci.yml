@@ -6,7 +6,7 @@ cache:
   paths:
   - vendor/
 
-before_script:
+before_script: &global_before_script
 - apt-get update -yqq
 # Node / YARN / NPM
 - apt-get install -y --no-install-recommends gnupg
@@ -75,9 +75,7 @@ syntax:lint:twig:
 test:behat:
   stage: test
   before_script:
-    - uname -a
-    - cat /etc/apt/sources.list
-    - apt-get update
+    - <<: *global_before_script
     - apt-get install -y --no-install-recommends chromium
     - chromium --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 --disable-gpu --headless --disable-logging --no-sandbox &
     - cp .env.test .env
