@@ -6,33 +6,40 @@ cache:
   paths:
   - vendor/
 
-.before_script: &global_before_script |-
-apt-get update -yqq
+before_script:
+- apt-get update -yqq
 # Node / YARN / NPM
-apt-get install -y --no-install-recommends gnupg
-curl -sL https://deb.nodesource.com/setup_10.x | bash -
-apt-get update
-apt-get install -y --no-install-recommends nodejs
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-apt-get update
-apt-get install -y --no-install-recommends yarn
-npm install -g npm
+- apt-get install -y --no-install-recommends gnupg
+- curl -sL https://deb.nodesource.com/setup_10.x | bash -
+- apt-get update
+- apt-get install -y --no-install-recommends nodejs
+- curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+- echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+- apt-get update
+- apt-get install -y --no-install-recommends yarn
+- npm install -g npm
 # Update & Install tools
-apt-get install git -yqq
-apt-get install zlib1g-dev -yqq
+- apt-get install git -yqq
+- apt-get install zlib1g-dev -yqq
+- apt-get install -y --no-install-recommends chromium
 # Install PHP Extensions
-docker-php-ext-install pdo_mysql
-docker-php-ext-install zip
+- docker-php-ext-install pdo_mysql
+- docker-php-ext-install zip
 # Configuration
-cp .env.sample .env
+- cp .env.sample .env
 # Install composer
-curl -sS https://getcomposer.org/installer | php
+- curl -sS https://getcomposer.org/installer | php
 # Install all project dependencies
-php composer.phar install
-npm install
+- php composer.phar install
+- npm install
 # Assets
-./node_modules/gulp/bin/gulp.js
+- ./node_modules/gulp/bin/gulp.js
+# Launch chromium
+- chromium --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 --disable-gpu --headless --disable-logging --no-sandbox &
+- cp .env.test .env
+- cp behat.yml.dist behat.yml
+- php bin/console doctrine:schema:update --dump-sql --force
+- php bin/console fos:user:create user user@domain.tld p@ssword
 
 services:
 - mysql
@@ -49,55 +56,35 @@ stages:
 
 qa:phpstan:
   stage: qa
-  before_script:
-    - *global_before_script
   script:
     - ./vendor/bin/phpstan analyse src tests --level=4
 
 syntax:phpcs:
   stage: syntax
-  before_script:
-    - *global_before_script
   script:
     - ./vendor/bin/phpcs --error-severity=1 --warning-severity=8 --extensions=php
 
 syntax:lint:js:
   stage: syntax
-  before_script:
-    - *global_before_script
   script:
     - ./node_modules/gulp/bin/gulp.js lintJS
 
 syntax:lint:scss:
   stage: syntax
-  before_script:
-    - *global_before_script
   script:
     - ./node_modules/gulp/bin/gulp.js lintSCSS
 
 syntax:lint:twig:
   stage: syntax
-  before_script:
-    - *global_before_script
   script:
     - php bin/console lint:twig templates/
 
 test:behat:
   stage: test
-  before_script:
-    - *global_before_script
-    - apt-get install -y --no-install-recommends chromium
-    - chromium --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 --disable-gpu --headless --disable-logging --no-sandbox &
-    - cp .env.test .env
-    - cp behat.yml.dist behat.yml
-    - php bin/console doctrine:schema:update --dump-sql --force
-    - php bin/console fos:user:create user user@domain.tld p@ssword
   script:
     - APP_ENV=test ./vendor/bin/behat
 
 test:phpunit:
   stage: test
-  before_script:
-    - *global_before_script
   script:
     - ./vendor/bin/phpunit
