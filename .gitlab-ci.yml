@@ -6,7 +6,7 @@ cache:
   paths:
   - vendor/
 
-before_script: &global_before_script
+.before_script: &global_before_script |-
 - apt-get update -yqq
 # Node / YARN / NPM
 - apt-get install -y --no-install-recommends gnupg
@@ -49,33 +49,43 @@ stages:
 
 qa:phpstan:
   stage: qa
+  before_script:
+    - *global_before_script
   script:
     - ./vendor/bin/phpstan analyse src tests --level=4
 
 syntax:phpcs:
   stage: syntax
+  before_script:
+    - *global_before_script
   script:
     - ./vendor/bin/phpcs --error-severity=1 --warning-severity=8 --extensions=php
 
 syntax:lint:js:
   stage: syntax
+  before_script:
+    - *global_before_script
   script:
     - ./node_modules/gulp/bin/gulp.js lintJS
 
 syntax:lint:scss:
   stage: syntax
+  before_script:
+    - *global_before_script
   script:
     - ./node_modules/gulp/bin/gulp.js lintSCSS
 
 syntax:lint:twig:
   stage: syntax
+  before_script:
+    - *global_before_script
   script:
     - php bin/console lint:twig templates/
 
 test:behat:
   stage: test
   before_script:
-    - <<: *global_before_script
+    - *global_before_script
     - apt-get install -y --no-install-recommends chromium
     - chromium --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 --disable-gpu --headless --disable-logging --no-sandbox &
     - cp .env.test .env
@@ -87,5 +97,7 @@ test:behat:
 
 test:phpunit:
   stage: test
+  before_script:
+    - *global_before_script
   script:
     - ./vendor/bin/phpunit
