@@ -21,7 +21,7 @@ before_script:
 # Update & Install tools
 - apt-get install git -yqq
 - apt-get install zlib1g-dev -yqq
-- apt-get install -y --no-install-recommends chromium
+- apt-get install chromium -yqq
 # Install PHP Extensions
 - docker-php-ext-install pdo_mysql
 - docker-php-ext-install zip
@@ -36,7 +36,6 @@ before_script:
 - ./node_modules/gulp/bin/gulp.js
 # Launch chromium
 - chromium --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 --disable-gpu --headless --disable-logging --no-sandbox &
-- cp .env.test .env
 - cp behat.yml.dist behat.yml
 - php bin/console doctrine:schema:update --dump-sql --force
 - php bin/console fos:user:create user user@domain.tld p@ssword
