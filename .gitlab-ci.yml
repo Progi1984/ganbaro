@@ -85,7 +85,7 @@ syntax:lint:twig:
 test:behat:
   stage: test
   script:
-    - APP_ENV=test ./vendor/bin/behat
+    - APP_ENV=test ./vendor/bin/behat --verbose
 
 test:phpunit:
   stage: test
