@@ -1,10 +1,18 @@
 # Select image from https://hub.docker.com/_/php/
 image: php:7.2
 
+services:
+- mysql
+
 # Select what we should cache
 cache:
   paths:
   - vendor/
+
+variables:
+  # Mysql service (https://hub.docker.com/_/mysql/)
+  MYSQL_DATABASE: oikoshi
+  MYSQL_ROOT_PASSWORD: password
 
 before_script:
 - apt-get update -yqq
@@ -27,6 +35,7 @@ before_script:
 - docker-php-ext-install zip
 # Configuration
 - cp .env.sample .env
+- cp behat.yml.dist behat.yml
 # Install composer
 - curl -sS https://getcomposer.org/installer | php
 # Install all project dependencies
@@ -36,17 +45,9 @@ before_script:
 - ./node_modules/gulp/bin/gulp.js
 # Launch chromium
 - chromium --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 --disable-gpu --headless --disable-logging --no-sandbox &
-- cp behat.yml.dist behat.yml
+# Symfony CLI
 - php bin/console doctrine:schema:update --dump-sql --force
 - php bin/console fos:user:create user user@domain.tld p@ssword
-
-services:
-- mysql
-
-variables:
-  # Mysql service (https://hub.docker.com/_/mysql/)
-  MYSQL_DATABASE: oikoshi
-  MYSQL_ROOT_PASSWORD: password
 
 stages:
   - syntax
