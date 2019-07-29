@@ -7,32 +7,32 @@ cache:
   - vendor/
 
 .before_script: &global_before_script |-
-- apt-get update -yqq
+apt-get update -yqq
 # Node / YARN / NPM
-- apt-get install -y --no-install-recommends gnupg
-- curl -sL https://deb.nodesource.com/setup_10.x | bash -
-- apt-get update
-- apt-get install -y --no-install-recommends nodejs
-- curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-- echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-- apt-get update
-- apt-get install -y --no-install-recommends yarn
-- npm install -g npm
+apt-get install -y --no-install-recommends gnupg
+curl -sL https://deb.nodesource.com/setup_10.x | bash -
+apt-get update
+apt-get install -y --no-install-recommends nodejs
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+apt-get update
+apt-get install -y --no-install-recommends yarn
+npm install -g npm
 # Update & Install tools
-- apt-get install git -yqq
-- apt-get install zlib1g-dev -yqq
+apt-get install git -yqq
+apt-get install zlib1g-dev -yqq
 # Install PHP Extensions
-- docker-php-ext-install pdo_mysql
-- docker-php-ext-install zip
+docker-php-ext-install pdo_mysql
+docker-php-ext-install zip
 # Configuration
-- cp .env.sample .env
+cp .env.sample .env
 # Install composer
-- curl -sS https://getcomposer.org/installer | php
+curl -sS https://getcomposer.org/installer | php
 # Install all project dependencies
-- php composer.phar install
-- npm install
+php composer.phar install
+npm install
 # Assets
-- ./node_modules/gulp/bin/gulp.js
+./node_modules/gulp/bin/gulp.js
 
 services:
 - mysql
