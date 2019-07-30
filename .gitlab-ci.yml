@@ -31,7 +31,7 @@ before_script:
 - apt-get install git -yqq
 - apt-get install zlib1g-dev -yqq
 - apt-get install chromium -yqq
-- apt-get install xvfb -yqq
+- apt-get install jq -yqq
 # Install PHP Extensions
 - docker-php-ext-install pdo_mysql
 - docker-php-ext-install zip
