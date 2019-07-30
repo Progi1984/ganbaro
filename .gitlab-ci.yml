@@ -54,32 +54,68 @@ before_script:
 - chromium --disable-gpu --headless --no-sandbox --window-size=1920,1080 --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 &
 - sleep 5s && curl -s http://localhost:9222/json/version | jq '.'
 
+.template_only_php:
+  before_script:
+  # Update & Install tools
+  - apt-get install git -yqq
+  - apt-get install zlib1g-dev -yqq
+  # Install PHP Extensions
+  - docker-php-ext-install pdo_mysql
+  - docker-php-ext-install zip
+  # Install composer
+  - curl -sS https://getcomposer.org/installer | php
+  # Install all project dependencies
+  - php composer.phar install
+
+.template_only_js:
+  before_script:
+  - apt-get update -yqq
+  # Node / YARN / NPM
+  - apt-get install -y --no-install-recommends gnupg
+  - curl -sL https://deb.nodesource.com/setup_10.x | bash -
+  - apt-get update
+  - apt-get install -y --no-install-recommends nodejs
+  - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+  - echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+  - apt-get update
+  - apt-get install -y --no-install-recommends yarn
+  - npm install -g npm
+  # Install all project dependencies
+  - npm install
+  # Assets
+  - ./node_modules/gulp/bin/gulp.js
+
 stages:
   - syntax
   - qa
   - test
 
 qa:phpstan:
+  extends: .template_only_php
   stage: qa
   script:
     - ./vendor/bin/phpstan analyse src tests --level=4
 
 syntax:phpcs:
+  extends: .template_only_php
   stage: syntax
   script:
     - ./vendor/bin/phpcs --error-severity=1 --warning-severity=8 --extensions=php
 
 syntax:lint:js:
+  extends: .template_only_js
   stage: syntax
   script:
     - ./node_modules/gulp/bin/gulp.js lintJS
 
 syntax:lint:scss:
+  extends: .template_only_js
   stage: syntax
   script:
     - ./node_modules/gulp/bin/gulp.js lintSCSS
 
 syntax:lint:twig:
+  extends: .template_only_php
   stage: syntax
   script:
     - php bin/console lint:twig templates/
@@ -90,6 +126,13 @@ test:behat:
     - APP_ENV=test ./vendor/bin/behat --verbose
 
 test:phpunit:
+  extends: .template_only_php
   stage: test
   script:
     - ./vendor/bin/phpunit
+
+test:security:
+  stage: test
+  script:
+    - curl -sS https://get.sensiolabs.org/security-checker.phar
+    - php security-checker security:check ./composer.lock

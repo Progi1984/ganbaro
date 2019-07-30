@@ -28,7 +28,6 @@ class FeatureContext extends RawMinkContext implements Context
     public function iAmAuthenticatedAs($username, $password)
     {
         $this->visitPath('/login');
-        var_dump($this->getSession()->getPage()->getContent());
         $this->getSession()->getPage()->fillField('Username', $username);
         $this->getSession()->getPage()->fillField('Password', $password);
         $this->getSession()->getPage()->pressButton('Log in');

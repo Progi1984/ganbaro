@@ -20,5 +20,3 @@ default:
                 default:
                     chrome:
                       api_url: http://localhost:9222
-                      socket_timeout: 20
-                      dom_wait_timeout: 6000
