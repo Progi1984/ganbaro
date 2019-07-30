@@ -4,6 +4,7 @@ Feature: Authentication
   I need to be able to login and logout
   Scenario: Log in
     Given I am on "/"
+      And print last response
     When  I fill in "Username" with "user"
       And I fill in "Password" with "p@ssword"
       And I press "Log in"
