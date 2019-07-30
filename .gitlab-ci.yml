@@ -56,6 +56,7 @@ before_script:
 
 .template_only_php:
   before_script:
+  - apt-get update -yqq
   # Update & Install tools
   - apt-get install git -yqq
   - apt-get install zlib1g-dev -yqq
