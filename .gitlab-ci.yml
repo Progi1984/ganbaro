@@ -63,6 +63,8 @@ before_script:
   # Install PHP Extensions
   - docker-php-ext-install pdo_mysql
   - docker-php-ext-install zip
+  # Configuration
+  - cp .env.sample .env
   # Install composer
   - curl -sS https://getcomposer.org/installer | php
   # Install all project dependencies
