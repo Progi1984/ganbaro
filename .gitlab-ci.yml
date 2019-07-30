@@ -137,5 +137,5 @@ test:phpunit:
 test:security:
   stage: test
   script:
-    - curl -sS https://get.sensiolabs.org/security-checker.phar
-    - php security-checker security:check ./composer.lock
+    - curl -sS https://get.sensiolabs.org/security-checker.phar -o security-checker.phar
+    - php security-checker.phar security:check ./composer.lock
