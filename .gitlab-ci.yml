@@ -15,44 +15,45 @@ variables:
   MYSQL_DATABASE: oikoshi
   MYSQL_ROOT_PASSWORD: password
 
-before_script:
-- apt-get update -yqq
-# Node / YARN / NPM
-- apt-get install -y --no-install-recommends gnupg
-- curl -sL https://deb.nodesource.com/setup_10.x | bash -
-- apt-get update
-- apt-get install -y --no-install-recommends nodejs
-- curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-- echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-- apt-get update
-- apt-get install -y --no-install-recommends yarn
-- npm install -g npm
-# Update & Install tools
-- apt-get install git -yqq
-- apt-get install zlib1g-dev -yqq
-- apt-get install chromium -yqq
-- apt-get install jq -yqq
-# Install PHP Extensions
-- docker-php-ext-install pdo_mysql
-- docker-php-ext-install zip
-# Configuration
-- cp .env.sample .env
-- cp behat.yml.dist behat.yml
-# Install composer
-- curl -sS https://getcomposer.org/installer | php
-# Install all project dependencies
-- php composer.phar install
-- npm install
-# Assets
-- ./node_modules/gulp/bin/gulp.js
-# Symfony CLI
-- php bin/console doctrine:schema:update --dump-sql --force
-- php bin/console fos:user:create user user@domain.tld p@ssword
-# Launch chromium
-- php -S 0.0.0.0:8080 -t ./public &> /dev/null &
-- sleep 5s && curl http://localhost:8080
-- chromium --disable-gpu --headless --no-sandbox --window-size=1920,1080 --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 &
-- sleep 5s && curl -s http://localhost:9222/json/version | jq '.'
+.template_behat:
+  before_script:
+  - apt-get update -yqq
+  # Node / YARN / NPM
+  - apt-get install -y --no-install-recommends gnupg
+  - curl -sL https://deb.nodesource.com/setup_10.x | bash -
+  - apt-get update
+  - apt-get install -y --no-install-recommends nodejs
+  - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+  - echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+  - apt-get update
+  - apt-get install -y --no-install-recommends yarn
+  - npm install -g npm
+  # Update & Install tools
+  - apt-get install git -yqq
+  - apt-get install zlib1g-dev -yqq
+  - apt-get install chromium -yqq
+  - apt-get install jq -yqq
+  # Install PHP Extensions
+  - docker-php-ext-install pdo_mysql
+  - docker-php-ext-install zip
+  # Configuration
+  - cp .env.sample .env
+  - cp behat.yml.dist behat.yml
+  # Install composer
+  - curl -sS https://getcomposer.org/installer | php
+  # Install all project dependencies
+  - php composer.phar install
+  - npm install
+  # Assets
+  - ./node_modules/gulp/bin/gulp.js
+  # Symfony CLI
+  - php bin/console doctrine:schema:update --dump-sql --force
+  - php bin/console fos:user:create user user@domain.tld p@ssword
+  # Launch chromium
+  - php -S 0.0.0.0:8080 -t ./public &> /dev/null &
+  - sleep 5s && curl http://localhost:8080
+  - chromium --disable-gpu --headless --no-sandbox --window-size=1920,1080 --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 &
+  - sleep 5s && curl -s http://localhost:9222/json/version | jq '.'
 
 .template_only_php:
   before_script:
@@ -61,7 +62,9 @@ before_script:
   - apt-get install git -yqq
   - apt-get install zlib1g-dev -yqq
   # Install PHP Extensions
+  - pecl install xdebug
   - docker-php-ext-install pdo_mysql
+  - docker-php-ext-enable xdebug
   - docker-php-ext-install zip
   # Configuration
   - cp .env.sample .env
@@ -124,6 +127,7 @@ syntax:lint:twig:
     - php bin/console lint:twig templates/
 
 test:behat:
+  extends: .template_behat
   stage: test
   script:
     - APP_ENV=test ./vendor/bin/behat --verbose
@@ -132,10 +136,12 @@ test:phpunit:
   extends: .template_only_php
   stage: test
   script:
-    - ./vendor/bin/phpunit
+    - ./vendor/bin/phpunit --coverage-text --colors=never
 
 test:security:
   stage: test
+  before_script:
+    - ''
   script:
     - curl -sS https://get.sensiolabs.org/security-checker.phar -o security-checker.phar
     - php security-checker.phar security:check ./composer.lock
