@@ -1,2 +1,2 @@
-# MATFed - My Activités Tracker - Fediverse
+# MATFed - My Activities Tracker - Fediverse
 
