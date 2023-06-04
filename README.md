@@ -1,2 +1,2 @@
-# Oikoshi
+# MATFed - My Activités Tracker - Fediverse
 
